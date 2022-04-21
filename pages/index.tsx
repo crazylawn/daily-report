@@ -4,8 +4,10 @@ import Image from 'next/image';
 
 const Home: NextPage = () => {
   return (
-    <div>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
+    <div className="dark">
+      <div className="bg-white dark:bg-gray-800 h-80">
+        <h1 className="text-3xl font-bold underline">hi~ darkMode </h1>
+      </div>
     </div>
   );
 };
