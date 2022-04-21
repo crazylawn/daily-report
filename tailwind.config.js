@@ -3,6 +3,10 @@ module.exports = {
     './pages/**/*.{js,ts,jsx,tsx}',
     './components/**/*.{js,ts,jsx,tsx}',
   ],
+  purge: {
+    preserveHtmlElements: false,
+    content: ['src/**/*.[j|t]s[x]'],
+  },
   darkMode: 'class', //다크모드 적용
   theme: {
     extend: {},

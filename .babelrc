@@ -1,0 +1,28 @@
+// {
+//   "presets": ["next/babel"],
+//   "plugins": [
+//     [
+//       "module-resolver",
+//       {
+//         "root": ["."],
+//         "alias": {
+//           "@src": "./src/*",
+//           "@styles": "./src/styles",
+//           // "@pages": "./src/pages",
+//           // "components": "./src/components",
+//           // "@layouts": "./src/layouts",
+//           // "@providers": "./src/providers",
+//           // "@services": "./src/services",
+//           // "@models": "./src/models",
+//           // "@styles": "./src/styles",
+//           // "@icons": "./src/icons",
+//           // "@stores": "./src/stores",
+//           // "@types": "./src/@types",
+//           // "@atoms": "./src/components/atoms",
+//           // "@molecules": "./src/components/molecules",
+//           // "@organisms": "./src/components/organisms"
+//         }
+//       }
+//     ]
+//   ]
+// }
