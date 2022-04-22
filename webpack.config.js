@@ -3,7 +3,8 @@ module.exports = {
     extensions: ['.ts', '.tsx', '.js', '.json'],
     // -----
     alias: {
-      '@src': path.resolve(__dirname, 'src'),
+      '@pages': path.resolve(__dirname, 'src/pages'),
+      '@components': path.resolve(__dirname, 'src/components'),
       '@styles': path.resolve(__dirname, 'src/styles'),
     },
     // ----
