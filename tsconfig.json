@@ -21,6 +21,7 @@
     "jsx": "preserve",
     "incremental": true
   },
+  // "files": ["twin.d.ts"], // 추가
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "webpack.config.js"],
   "exclude": ["node_modules"]
 }

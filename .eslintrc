@@ -22,6 +22,8 @@
       "error",
       { "blankLine": "always", "prev": "*", "next": "return" }
     ],
+    "react/prop-types": 0,
+    "@typescript-eslint/explicit-module-boundary-types": "off", //JSX.Element의 Props의 형태가 명시되어 있지 않으면 오류
     "@typescript-eslint/no-redeclare": 0,
     "@typescript-eslint/no-unused-vars": "error" // 사용되지 않는 변수를 에러로 인식
     // "@typescript-eslint/no-explicit-any": "error" // any 타입 정의를 에러로 인식
