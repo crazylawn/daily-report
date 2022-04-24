@@ -10,5 +10,8 @@ module.exports = {
   core: {
     builder: '@storybook/builder-webpack5',
   },
+  features: {
+    storyStoreV7: true, //Bundle splitting :스토리북을 시작하면 로딩 시간이 개선
+  },
   typescript: { reactDocgen: false },
 };
