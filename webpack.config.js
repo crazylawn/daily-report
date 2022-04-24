@@ -8,5 +8,13 @@ module.exports = {
       '@styles': path.resolve(__dirname, 'src/styles'),
     },
     // ----
+    module: {
+      rules: [
+        {
+          test: /\.svg$/,
+          use: ['@svgr/webpack'],
+        },
+      ],
+    },
   },
 };

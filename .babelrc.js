@@ -12,7 +12,7 @@ module.exports = {
     ],
   ],
   plugins: [
-    // '@emotion/babel-plugin',
+    // '@emotion/babel-plugin', // 버전 8이상은 필요없다고 해서 일단 주석처리
     'babel-plugin-macros',
     [
       'module-resolver',

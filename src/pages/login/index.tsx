@@ -21,8 +21,9 @@ text-3xl font-bold underline
 
 const Icon = styled.div<IconProps>(({ index }) => [
   tw`
-  w-96
+  md:w-32
   text-yellow-800
+  text-lg
   `,
   css`
     position: relative;
