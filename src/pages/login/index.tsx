@@ -16,7 +16,7 @@ const Login: NextPage = () => {
 };
 
 const LoginWrapper = tw.div`
-text-3xl font-bold underline
+text-3xl font-bold 
 `;
 
 const Icon = styled.div<IconProps>(({ index }) => [

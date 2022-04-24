@@ -9,7 +9,11 @@ module.exports = {
   },
   darkMode: 'class', //다크모드 적용
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ['IM_Hyemin-Bold', 'IM_Hyemin-Regular'],
+      },
+    },
     screens: {
       sm: '465px',
       md: '768px',
