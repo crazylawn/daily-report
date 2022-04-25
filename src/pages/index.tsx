@@ -5,11 +5,8 @@ import Login from './login';
 
 const Home: NextPage = () => {
   return (
-    <div className="dark">
-      <div className="h-100 bg-white dark:bg-gray-800">
-        <h1 className="text-3xl font-bold ">Daily Report</h1>
-        <Login />
-      </div>
+    <div>
+      <Login />
     </div>
   );
 };

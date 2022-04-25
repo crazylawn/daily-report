@@ -10,6 +10,21 @@ module.exports = {
   darkMode: 'class', //다크모드 적용
   theme: {
     extend: {
+      colors: {
+        'grayish-red': '#C1A3A3',
+        'light-grayish-red': '#f3c5c5',
+        'dark-grayish-red': '#886F6F',
+        'very-dark-grayish-red': '#694e4e',
+      },
+      width: {
+        128: '32rem',
+      },
+      height: {
+        128: '32rem',
+        253: '64rem',
+        254: '64.25rem',
+        257: '65rem',
+      },
       fontFamily: {
         sans: ['IM_Hyemin-Bold', 'IM_Hyemin-Regular'],
       },
