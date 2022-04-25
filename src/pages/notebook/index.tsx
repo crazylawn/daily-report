@@ -66,16 +66,19 @@ w-full
 flex
 flex-col
 items-center
-justify-evenly
+gap-5
+mt-60
 
 `;
 const Title = tw.div`
 text-very-dark-grayish-red
+text-3xl
 `;
 const Text = tw.span`
 text-very-dark-grayish-red
 `;
 const ButtonWrapper = tw.div`
+w-full
 flex 
 items-center 
 justify-center
