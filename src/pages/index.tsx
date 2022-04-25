@@ -1,12 +1,12 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
-import Login from './login';
+import Notebook from './notebook';
 
 const Home: NextPage = () => {
   return (
     <div>
-      <Login />
+      <Notebook />
     </div>
   );
 };

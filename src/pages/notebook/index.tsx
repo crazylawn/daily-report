@@ -5,10 +5,10 @@ import { NextPage } from 'next';
 interface IconProps {
   index: number;
 }
-const Login: NextPage = () => {
+const Notebook: NextPage = () => {
   return (
-    <LoginWrapper className="bg-[#fffff]">
-      <Content>
+    <NotebookLayout className="bg-[#fffff]">
+      <ContentBox>
         <Title>Life Make it</Title>
         <ButtonWrapper>
           {/* w-28 이면 width  :width: 7rem; //112px  */}
@@ -23,27 +23,27 @@ const Login: NextPage = () => {
             <Text> naver Login</Text>
           </button>
         </ButtonWrapper>
-      </Content>
+      </ContentBox>
       {/* <Icon index={50}>rkqt</Icon> */}
-    </LoginWrapper>
+    </NotebookLayout>
   );
 };
 // tailwind설정파일에 있는 color 가져다 쓰는법!
-const LoginWrapper = tw.div`
+const NotebookLayout = tw.div`
 w-full
 h-full
 flex items-center
 justify-center
 
 `;
-const Content = tw.div`
+const ContentBox = tw.div`
 w-2/4
 h-257
 bg-light-grayish-red
 `;
 const Title = tw.div`
 `;
-const Text = tw.label`
+const Text = tw.span`
 text-very-dark-grayish-red
 `;
 const ButtonWrapper = tw.div`
@@ -66,4 +66,4 @@ const Icon = styled.div<IconProps>(({ index }) => [
   `,
 ]);
 
-export default Login;
+export default Notebook;
