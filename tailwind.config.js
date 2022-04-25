@@ -3,10 +3,10 @@ module.exports = {
     './pages/**/*.{js,ts,jsx,tsx}',
     './components/**/*.{js,ts,jsx,tsx}',
   ],
-  purge: {
-    preserveHtmlElements: false,
-    content: ['src/**/*.[j|t]s[x]'],
-  },
+  // purge: {
+  //   preserveHtmlElements: false,
+  //   content: ['src/**/*.[j|t]s[x]'],
+  // },
   darkMode: 'class', //다크모드 적용
   theme: {
     extend: {
@@ -15,7 +15,6 @@ module.exports = {
         'very-dark-grayish-red': '#694e4e',
         'light-grayish-red': '#f3c5c5',
         'dark-grayish-red': '#886F6F',
-
       },
       width: {
         128: '32rem',
