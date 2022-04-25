@@ -12,9 +12,10 @@ module.exports = {
     extend: {
       colors: {
         'grayish-red': '#C1A3A3',
+        'very-dark-grayish-red': '#694e4e',
         'light-grayish-red': '#f3c5c5',
         'dark-grayish-red': '#886F6F',
-        'very-dark-grayish-red': '#694e4e',
+
       },
       width: {
         128: '32rem',

@@ -5,25 +5,35 @@ import { NextPage } from 'next';
 interface IconProps {
   index: number;
 }
+
+//이건 정말 꼭 알아야해!!!
+// flex-row	flex-direction: row;
+// flex-row-reverse	flex-direction: row-reverse;
+// flex-col	flex-direction: column;
+// flex-col-reverse	flex-direction: column-reverse;
 const Notebook: NextPage = () => {
   return (
     <NotebookLayout className="bg-[#fffff]">
-      <ContentBox>
-        <Title>Life Make it</Title>
-        <ButtonWrapper>
-          {/* w-28 이면 width  :width: 7rem; //112px  */}
-          {/* rounded-lg 이면 border-radius: 0.5rem; //8px  */}
-          <button className="h-10 w-28 rounded-lg bg-grayish-red">
-            <Text>google Login</Text>
-          </button>
-          <button className="h-10 w-28 rounded-lg bg-grayish-red">
-            <Text>kakao Login</Text>
-          </button>
-          <button className="h-10 w-28 rounded-lg bg-grayish-red">
-            <Text> naver Login</Text>
-          </button>
-        </ButtonWrapper>
-      </ContentBox>
+      <NotebookRow>
+        <TipBox />
+        <ContentBox>
+          <Title>Life Make it</Title>
+          <ButtonWrapper>
+            {/* w-28 이면 width  :width: 7rem; //112px  */}
+            {/* rounded-lg 이면 border-radius: 0.5rem; //8px  */}
+            <button className="h-10 w-28 rounded-lg bg-grayish-red">
+              <Text>google Login</Text>
+            </button>
+            <button className="h-10 w-28 rounded-lg bg-grayish-red">
+              <Text>kakao Login</Text>
+            </button>
+            <button className="h-10 w-28 rounded-lg bg-grayish-red">
+              <Text> naver Login</Text>
+            </button>
+          </ButtonWrapper>
+        </ContentBox>
+      </NotebookRow>
+
       {/* <Icon index={50}>rkqt</Icon> */}
     </NotebookLayout>
   );
@@ -35,13 +45,32 @@ h-full
 flex items-center
 justify-center
 
+
 `;
-const ContentBox = tw.div`
+
+const NotebookRow = tw.div`
+flex
 w-2/4
 h-257
 bg-light-grayish-red
+rounded-lg
+`;
+const TipBox = tw.div`
+w-20
+h-257
+bg-grayish-red
+rounded-lg
+`;
+const ContentBox = tw.div`
+w-full
+flex
+flex-col
+items-center
+justify-evenly
+
 `;
 const Title = tw.div`
+text-very-dark-grayish-red
 `;
 const Text = tw.span`
 text-very-dark-grayish-red
@@ -50,6 +79,7 @@ const ButtonWrapper = tw.div`
 flex 
 items-center 
 justify-center
+gap-3
 `;
 const Icon = styled.div<IconProps>(({ index }) => [
   tw`
