@@ -3,17 +3,8 @@ module.exports = {
     './src/pages/**/*.{js,ts,jsx,tsx}',
     './src/components/**/*.{js,ts,jsx,tsx}',
   ],
-
-  //purge 를 주석처리해버리면 .tsx, ts 에서 tailwind css 가 안먹힌다...;;;
-  //이유 찾음~~ tailwind v3 에서 purge ===> content 로 변경되었다~~~
-  //이번에 안된이유는 ./src 폴더를 인식못해서 ㅠ.ㅠ
-  //'./pages/**/*.{js,ts,jsx,tsx}',
-  // 이렇게 되어있었다 ㅠ.ㅠ 반성하기~ 설정 파일은 조심해야한다.
-
-  // purge: {
-  //   preserveHtmlElements: false,
-  //   content: ['src/**/*.[j|t]s[x]'],
-  // },
+  //https://github.com/tailwindlabs/tailwindcss/discussions/6019
+  //tailwind v3.0  => 이슈 링크 추가!
   darkMode: 'class', //다크모드 적용
   theme: {
     extend: {
