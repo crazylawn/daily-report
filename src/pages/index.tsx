@@ -10,7 +10,7 @@ const Home: NextPage = () => {
   return (
     <div>
       {!session && (
-        <button onClick={() => signIn('kakao')}>1카카오로그인</button>
+        <button onClick={() => signIn('kakao')}>카카오로그인</button>
       )}
       {session && <button onClick={() => signOut()}>카카오로그아웃</button>}
       <Notebook />
