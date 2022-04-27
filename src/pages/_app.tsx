@@ -1,10 +1,10 @@
 import '@styles/globals.css';
 // import { GlobalStyles } from 'twin.macro';
 import type { AppProps } from 'next/app';
-import {SessionProvider} from 'next-auth/react'
+import { SessionProvider } from 'next-auth/react';
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <SessionProvider>
+    <SessionProvider session={pageProps.session}>
       <Component {...pageProps} />
       {/* <GlobalStyles /> */}
     </SessionProvider>
