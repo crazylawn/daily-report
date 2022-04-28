@@ -50,12 +50,12 @@ justify-center
 
 const NotebookRow = tw.div`
 flex
-sm:w-full
-md:w-full
-lg:w-2/4
-xl:w-2/4
+sm:w-full h-full
+md:w-full h-full
+lg:w-2/4 h-257
+xl:w-2/4 h-257
 
-h-257
+
 bg-light-grayish-red
 rounded-lg
 `;
