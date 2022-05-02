@@ -6,6 +6,7 @@ const Main = () => {
     <div>
       <Text>오늘의 할일 (9가지마법)</Text>
       <MemoPad />
+      <button>초기버튼</button>
     </div>
   );
 };
