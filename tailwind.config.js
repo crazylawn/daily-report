@@ -13,6 +13,7 @@ module.exports = {
         'very-dark-grayish-red': '#694e4e',
         'light-grayish-red': '#f3c5c5',
         'dark-grayish-red': '#886F6F',
+        'red-orange': '#FFBDAE',
       },
       width: {
         128: '32rem',
