@@ -10,8 +10,9 @@ const MemoPad = () => {
 
 const MemoWrapper = tw.div`
 bg-red-orange
-w-20
-h-20
+w-60
+h-60
+shadow-lg 
 `;
 const MemoText = tw.div`
 
