@@ -22,11 +22,14 @@ export default NextAuth({
       console.log(user, account, profile, 'try signin');
 
       try {
+        // const exitedUser = await prisma.user.findUnique({
+        //   where: { email: user.email },
+        // });
         const exitedUser = await prisma.user.findUnique({
           where: { email: user.email },
         });
         if (exitedUser) {
-          console.log(exitedUser, 'get user');
+          console.log(exitedUser, 'get user!!');
           return Promise.resolve(true);
         } else {
           console.log('create###', user.name, user.email);
@@ -34,6 +37,7 @@ export default NextAuth({
             data: {
               name: user.name,
               email: user.email,
+              image: user.image,
             },
           });
           console.log(createdUser, 'created user!');
