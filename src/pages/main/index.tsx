@@ -5,7 +5,7 @@ const Main = () => {
   return (
     <div>
       <Text>오늘의 할일 (9가지마법)</Text>
-      <MemoPad />
+      <MemoPad bg="#FFBDAE" />
       <button>초기버튼</button>
     </div>
   );
