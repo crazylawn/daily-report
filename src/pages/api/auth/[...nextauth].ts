@@ -19,7 +19,7 @@ export default NextAuth({
   ],
   callbacks: {
     signIn: async ({ user, account, profile }: any) => {
-      console.log(user, account, profile, 'try signin');
+      console.log(account, 'try signin');
 
       try {
         // const exitedUser = await prisma.user.findUnique({
@@ -32,15 +32,41 @@ export default NextAuth({
           console.log(exitedUser, 'get user!!');
           return Promise.resolve(true);
         } else {
-          console.log('create###', user.name, user.email);
-          const createdUser = await prisma.user.create({
-            data: {
-              name: user.name,
-              email: user.email,
-              image: user.image,
-            },
-          });
-          console.log(createdUser, 'created user!');
+          console.log('create###', user);
+          if (account.provider === 'kakao') {
+            const createdUser = await prisma.user.create({
+              data: {
+                userId: user.id,
+                name: user.name,
+                email: user.email,
+                image: user.image,
+              },
+            });
+            const createdAccount = await prisma.account.create({
+              data: {
+                userId: user.id,
+                compoundId: user.name,
+                providerType: account.type,
+                providerId: account.provider,
+                providerAccountId: account.providerAccountId,
+                accessToken: account.access_token,
+                tokenType: account.token_type,
+                refreshToken: account.refresh_token,
+                scope: account.scope,
+                refreshTokenExpires: account.refresh_token_expires_in,
+              },
+            });
+          } else if (account.provider === 'naver') {
+            const createdUser = await prisma.user.create({
+              data: {
+                name: user.name,
+                email: user.email,
+                image: user.image,
+              },
+            });
+          }
+
+          // console.log(createdUser, 'created user!');
           return Promise.resolve(true);
         }
       } catch (e) {
