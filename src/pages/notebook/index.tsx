@@ -15,7 +15,8 @@ interface IconProps {
 const Notebook: NextPage = () => {
   const reuter = useRouter();
   const onMovePage = () => {
-    reuter.push('/main');
+    // reuter.push('/main');
+    reuter.push('/priority');
   };
   return (
     <NotebookLayout className="bg-[#fffff]">
