@@ -4,18 +4,14 @@ import { useDrop } from 'react-dnd';
 
 interface DndColumnProps {
   bg?: string;
-  children?: any;
+  children?: JSX.Element[] | JSX.Element;
   className?: string;
   title: string;
 }
 const DndColumn = ({ bg, children, className, title }: DndColumnProps) => {
-  const [{ canDrop, isOver }, drop] = useDrop({
+  const [, drop] = useDrop({
     accept: 'text',
-    drop: () => ({ name: 'crazy' }),
-    collect: (monitor: any) => ({
-      isOver: monitor.isOver(),
-      canDrop: monitor.canDrop(),
-    }),
+    drop: () => ({ name: title }),
   });
   return (
     <DndWrapper ref={drop}>
@@ -27,5 +23,7 @@ const DndColumn = ({ bg, children, className, title }: DndColumnProps) => {
 
 const DndWrapper = tw.div`
 bg-grayish-red
+w-96
+h-96
 `;
 export default DndColumn;
