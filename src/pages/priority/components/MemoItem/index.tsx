@@ -6,11 +6,12 @@ import { useDrag, DragSourceMonitor } from 'react-dnd';
 interface MemoItemProps {
   bg?: string;
   content?: string;
+  setIsFirstColumn : any
 }
-const MemoItem = ({ bg, content, ...props }: MemoItemProps) => {
+const MemoItem = ({ bg, content,setIsFirstColumn, ...props }: MemoItemProps) => {
   const [{ isDragging }, drag] = useDrag({
     type: 'text',
-    item: { name: '정민경', type: '개발자' },
+    item: { name: 'crazy', type: '개발자' },
     collect: (monitor: DragSourceMonitor) => ({
       isDragging: monitor.isDragging(),
     }),
