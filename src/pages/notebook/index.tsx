@@ -47,7 +47,6 @@ const Notebook: NextPage = () => {
           </ButtonWrapper>
         </ContentBox>
       </NotebookRow>
-
       {/* <Icon index={50}>rkqt</Icon> */}
     </NotebookLayout>
   );
@@ -68,8 +67,6 @@ sm:w-full h-full
 md:w-full h-full
 lg:w-2/4 h-257
 xl:w-2/4 h-257
-
-
 bg-light-grayish-red
 rounded-lg
 `;
