@@ -9,24 +9,33 @@ interface MemoPadProps {
 const MemoPad = ({ bg, content, ...props }: MemoPadProps) => {
   return (
     <MemoWrapper bg={bg} {...props}>
-      <MemoText>{content}</MemoText>
+      <MemoText bg={bg}>{content}</MemoText>
     </MemoWrapper>
   );
 };
 
 const MemoWrapper = styled.div<{ bg?: string }>(({ bg }) => [
   tw`
-  w-60
-  h-60
+  w-52
+  h-52
   shadow-lg
-  p-4
+  p-2
+  m-2
   `,
 
   css`
     background-color: ${bg};
   `,
 ]);
-const MemoText = tw.div`
-
-`;
+const MemoText = styled.textarea<{ bg?: string }>(({ bg }) => [
+  tw`
+h-full
+w-full
+outline-none
+resize-none
+`,
+  css`
+    background-color: ${bg};
+  `,
+]);
 export default MemoPad;

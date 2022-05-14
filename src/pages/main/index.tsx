@@ -1,14 +1,26 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import tw from 'twin.macro';
 import MemoPad from '@components/MemoPad';
 const Main = () => {
+  const grayCircleList = useMemo(
+    () => Array.from({ length: 15 }, (_, idx) => <GrayCircle />),
+    [],
+  );
   return (
     <MainLayout>
       <MainRow>
-        <Text>오늘의 할일 (9가지마법)</Text>
-        <MemoPad bg="#FFBDAE" />
-        <MemoPad bg="#FFC470" />
-        <button>초기버튼</button>
+        <CircleBox>{grayCircleList}</CircleBox>
+        <div className="flex h-full w-full flex-col p-4 ">
+          <Text>오늘의 할일 (9가지마법)</Text>
+          <div className="flex flex-wrap">
+            <MemoPad bg="#FFBDAE" />
+            <MemoPad bg="#FFC470" />
+            <MemoPad bg="#FFBDAE" />
+            <MemoPad bg="#FFBDAE" />
+            <MemoPad bg="#FFC470" />
+          </div>
+          <button>초기버튼</button>
+        </div>
       </MainRow>
     </MainLayout>
   );
@@ -29,9 +41,23 @@ lg:w-2/4 h-257
 xl:w-2/4 h-257
 bg-more-light-grayish-red
 rounded-lg
+
+`;
+
+const GrayCircle = tw.div`
+bg-light-gray
+w-10 h-10
+rounded-3xl
+mt-6
 `;
 const Text = tw.div`
 text-grayish-red
+flex
+justify-center
 `;
 
+const CircleBox = tw.div`
+mt-14
+ml-4
+`;
 export default Main;
