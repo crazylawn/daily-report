@@ -19,7 +19,7 @@ const Main = () => {
             <MemoPad bg="#FFBDAE" />
             <MemoPad bg="#FFC470" />
           </div>
-          <button>초기버튼</button>
+          <button className="bg-dark-grayish-red text-white">저장</button>
         </div>
       </MainRow>
     </MainLayout>
@@ -37,8 +37,8 @@ const MainRow = tw.div`
 flex
 sm:w-full h-full
 md:w-full h-full
-lg:w-2/4 h-257
-xl:w-2/4 h-257
+lg:w-2/4  h-full
+xl:w-2/4  h-full
 bg-more-light-grayish-red
 rounded-lg
 
