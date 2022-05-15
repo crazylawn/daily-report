@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
-import tw from 'twin.macro';
+import tw, { styled } from 'twin.macro';
 import MemoPad from '@components/MemoPad';
+import { css } from '@emotion/react';
 const Main = () => {
   const grayCircleList = useMemo(
     () => Array.from({ length: 14 }, (_, i) => <GrayCircle />),
@@ -23,8 +24,18 @@ const Main = () => {
             <MemoPad bg="#B1D0FF" />
             <MemoPad bg="#FFEA79" />
           </div>
-          <button className="bg-dark-grayish-red text-white">저장</button>
+          <div className="mt-7 flex justify-center">
+            <button className=" h-full w-1/6 rounded-lg bg-dark-grayish-red text-white">
+              저장
+            </button>
+          </div>
         </div>
+        <RectangleBox>
+          <RectangleTabBar bg="#E14141" />
+          <RectangleTabBar bg="#FA7719" />
+          <RectangleTabBar bg="#D7DB27" />
+          <RectangleTabBar bg="#689C26" />
+        </RectangleBox>
       </MainRow>
     </MainLayout>
   );
@@ -64,5 +75,18 @@ const CircleBox = tw.div`
 mt-8
 ml-4
 mb-8
+
 `;
+
+const RectangleTabBar = styled.div<{ bg?: string }>(({ bg }) => [
+  tw`
+h-1/4
+w-24
+rounded-lg
+`,
+  css`
+    background-color: ${bg};
+  `,
+]);
+const RectangleBox = tw.div``;
 export default Main;
