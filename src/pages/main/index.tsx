@@ -3,7 +3,7 @@ import tw from 'twin.macro';
 import MemoPad from '@components/MemoPad';
 const Main = () => {
   const grayCircleList = useMemo(
-    () => Array.from({ length: 15 }, (_, idx) => <GrayCircle />),
+    () => Array.from({ length: 14 }, (_, i) => <GrayCircle />),
     [],
   );
   return (
@@ -18,6 +18,10 @@ const Main = () => {
             <MemoPad bg="#FFBDAE" />
             <MemoPad bg="#FFBDAE" />
             <MemoPad bg="#FFC470" />
+            <MemoPad bg="#B1D0FF" />
+            <MemoPad bg="#FFEA79" />
+            <MemoPad bg="#B1D0FF" />
+            <MemoPad bg="#FFEA79" />
           </div>
           <button className="bg-dark-grayish-red text-white">저장</button>
         </div>
@@ -57,7 +61,8 @@ justify-center
 `;
 
 const CircleBox = tw.div`
-mt-14
+mt-8
 ml-4
+mb-8
 `;
 export default Main;
