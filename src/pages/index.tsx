@@ -14,11 +14,13 @@ const Home: NextPage = () => {
         <>
           <button onClick={() => signOut()}>카카오로그아웃</button>
           <button onClick={() => signOut()}>네이버로그아웃</button>
+          <button onClick={() => signOut()}>구글로그아웃</button>
         </>
       ) : (
         <>
           <button onClick={() => signIn('kakao')}>카카오로그인</button>
           <button onClick={() => signIn('naver')}>네이버로그인</button>
+          <button onClick={() => signIn('google')}>구글로그인</button>
         </>
       )}
       {/* {!session && <button onClick={() => signIn('kakao')}>카카오로그인</button>}
