@@ -23,8 +23,6 @@ const Home: NextPage = () => {
           <button onClick={() => signIn('google')}>구글로그인</button>
         </>
       )}
-      {/* {!session && <button onClick={() => signIn('kakao')}>카카오로그인</button>}
-      {session && <button onClick={() => signOut()}>카카오로그아웃</button>} */}
       <Notebook />
     </div>
   );

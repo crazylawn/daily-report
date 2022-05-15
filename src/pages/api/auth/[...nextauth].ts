@@ -24,28 +24,28 @@ export default NextAuth({
   ],
 
   callbacks: {
-    signIn: async ({ user, account, profile }: any) => {
+    signIn: async ({ user, account, profile, session }: any) => {
       try {
-        const KexitedUser = await prisma.user.findUnique({
-          where: { email: 'K' + user.email },
+        const exitedUser = await prisma.user.findMany({
+          where: { email: user.email },
         });
-        const NexitedUser = await prisma.user.findUnique({
-          where: { email: 'N' + user.email },
+        const exitedMingKingId = await prisma.user.findUnique({
+          where: { mingkingId: user.email + user.id },
         });
-        const GexitedUser = await prisma.user.findUnique({
-          where: { email: 'G' + user.email },
-        });
-
-        if (KexitedUser || NexitedUser || GexitedUser) {
-          return Promise.resolve(true);
+        if (exitedUser && exitedMingKingId) {
+          //이미 이메일이 있으면서
+          //고유한 값도 있으면
+          return Promise.resolve(true); //로그인 성공
         } else {
-          console.log('create###', user, account);
+          //고유한 값이 없으면
+          console.log('프로필', profile, user, account, session);
           if (account.provider === 'kakao') {
             const createdUser = await prisma.user.create({
               data: {
                 name: user.name,
-                email: 'K' + user.email,
+                email: user.email,
                 image: user.image,
+                mingkingId: user.email + user.id,
               },
             });
             const createdAccount = await prisma.account.create({
@@ -59,14 +59,31 @@ export default NextAuth({
                 refreshToken: account.refresh_token,
                 scope: account.scope,
                 refreshTokenExpires: account.refresh_token_expires_in,
+              },
+            });
+
+            const createdProfile = await prisma.profile.create({
+              data: {
+                userId: createdUser.id,
+                nickname: profile.properties.nickname,
+                name: profile.properties.nickname,
+                profileImageUrl:
+                  profile.kakao_account.profile.profile_image_url,
+                thumbnailImageUrl:
+                  profile.kakao_account.profile.thumbnail_image_url,
+                birthdayType: profile.kakao_account.birthday_type,
+                birthday: profile.kakao_account.birthday,
+                age: profile.kakao_account.age_range,
+                email: profile.kakao_account.email,
               },
             });
           } else if (account.provider === 'naver') {
             const createdUser = await prisma.user.create({
               data: {
                 name: user.name,
-                email: 'N' + user.email,
+                email: user.email,
                 image: user.image,
+                mingkingId: user.email + user.id,
               },
             });
             const createdAccount = await prisma.account.create({
@@ -82,13 +99,29 @@ export default NextAuth({
                 refreshTokenExpires: account.refresh_token_expires_in,
               },
             });
-            console.log('새로운', createdAccount, createdUser);
+
+            const createdProfile = await prisma.profile.create({
+              data: {
+                userId: createdUser.id,
+                nickname: profile.response.nickname,
+                name: profile.response.nickname,
+                profileImageUrl: profile.response.profile_image,
+                birthyear: profile.response.birthyear,
+                birthday: profile.response.birthday,
+                age: profile.response.age,
+                gender: profile.response.gender,
+                email: profile.response.email,
+                mobile: profile.response.mobile,
+                mobileE164: profile.response.mobile_e164,
+              },
+            });
           } else if (account.provider === 'google') {
             const createdUser = await prisma.user.create({
               data: {
                 name: user.name,
-                email: 'G' + user.email,
+                email: user.email,
                 image: user.image,
+                mingkingId: user.email + user.id,
               },
             });
             const createdAccount = await prisma.account.create({
@@ -105,9 +138,17 @@ export default NextAuth({
                 idToken: account.id_token,
               },
             });
-            console.log('새로운', createdAccount, createdUser);
+            const createdProfile = await prisma.profile.create({
+              data: {
+                userId: createdUser.id,
+                nickname: profile.name,
+                name: profile.family_name + profile.given_name,
+                profileImageUrl: profile.picture,
+                email: profile.email,
+                // locale : profile.locale
+              },
+            });
           }
-
           return Promise.resolve(true);
         }
       } catch (e) {
