@@ -13,7 +13,7 @@ const Main = () => {
         <CircleBox>{grayCircleList}</CircleBox>
         <div className="flex h-full w-full flex-col p-4 ">
           <Text>오늘의 할일 (9가지마법)</Text>
-          <div className="flex flex-wrap">
+          <div className="mt-2 flex flex-wrap justify-center">
             <MemoPad bg="#FFBDAE" />
             <MemoPad bg="#FFC470" />
             <MemoPad bg="#FFBDAE" />
