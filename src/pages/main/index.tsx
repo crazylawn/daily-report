@@ -4,7 +4,7 @@ import MemoPad from '@components/MemoPad';
 import { css } from '@emotion/react';
 const Main = () => {
   const grayCircleList = useMemo(
-    () => Array.from({ length: 14 }, (_, i) => <GrayCircle />),
+    () => Array.from({ length: 15 }, (_, i) => <GrayCircle />),
     [],
   );
   return (
@@ -64,6 +64,7 @@ bg-light-gray
 w-10 h-10
 rounded-3xl
 mt-6
+last-of-type:mb-6
 `;
 const Text = tw.div`
 text-grayish-red
@@ -72,9 +73,11 @@ justify-center
 `;
 
 const CircleBox = tw.div`
-mt-8
+flex
+justify-center
+flex-col
 ml-4
-mb-8
+
 
 `;
 
