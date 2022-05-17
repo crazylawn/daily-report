@@ -2,9 +2,10 @@ import React, { useMemo } from 'react';
 import tw, { styled } from 'twin.macro';
 import MemoPad from '@components/MemoPad';
 import { css } from '@emotion/react';
+import { SVGS } from 'public/assets/svg';
 const Main = () => {
   const grayCircleList = useMemo(
-    () => Array.from({ length: 15 }, (_, i) => <GrayCircle />),
+    () => Array.from({ length: 16 }, (_, i) => <GrayCircle />),
     [],
   );
   return (
@@ -13,6 +14,7 @@ const Main = () => {
         <CircleBox>{grayCircleList}</CircleBox>
         <div className="flex h-full w-full flex-col p-4 ">
           <Text>오늘의 할일 (9가지마법)</Text>
+          <SVGS.PLUS_BUTTON />
           <div className="mt-2 flex flex-wrap justify-center">
             <MemoPad bg="#FFBDAE" />
             <MemoPad bg="#FFC470" />
