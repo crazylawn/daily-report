@@ -31,10 +31,10 @@ const Main = () => {
           </div>
         </div>
         <RectangleBox>
-          <RectangleTabBar bg="#E14141" />
-          <RectangleTabBar bg="#FA7719" />
-          <RectangleTabBar bg="#D7DB27" />
-          <RectangleTabBar bg="#689C26" />
+          <RectangleTabBar bg="#E14141">일년목표</RectangleTabBar>
+          <RectangleTabBar bg="#FA7719">한달목표</RectangleTabBar>
+          <RectangleTabBar bg="#D7DB27">일주일목표</RectangleTabBar>
+          <RectangleTabBar bg="#689C26">하루목표</RectangleTabBar>
         </RectangleBox>
       </MainRow>
     </MainLayout>
