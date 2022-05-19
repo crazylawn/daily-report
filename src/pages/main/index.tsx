@@ -13,8 +13,10 @@ const Main = () => {
       <MainRow>
         <CircleBox>{grayCircleList}</CircleBox>
         <div className="flex h-full w-full flex-col p-4 ">
-          <Text>오늘의 할일 (9가지마법)</Text>
-          <SVGS.PLUS_BUTTON />
+          <div>
+            <Text>오늘의 할일 (9가지마법)</Text>
+            {/* <SVGS.PLUS_BUTTON /> */}
+          </div>
           <div className="mt-2 flex flex-wrap justify-center">
             <MemoPad bg="#FFBDAE" />
             <MemoPad bg="#FFC470" />
@@ -33,10 +35,18 @@ const Main = () => {
           </div>
         </div>
         <RectangleBox>
-          <RectangleTabBar bg="#E14141">일년목표</RectangleTabBar>
-          <RectangleTabBar bg="#FA7719">한달목표</RectangleTabBar>
-          <RectangleTabBar bg="#D7DB27">일주일목표</RectangleTabBar>
-          <RectangleTabBar bg="#689C26">하루목표</RectangleTabBar>
+          <RectangleTabBar bg="#E14141">
+            <TabText>일년목표</TabText>
+          </RectangleTabBar>
+          <RectangleTabBar bg="#FA7719">
+            <TabText>한달목표</TabText>
+          </RectangleTabBar>
+          <RectangleTabBar bg="#D7DB27">
+            <TabText>일주일목표</TabText>
+          </RectangleTabBar>
+          <RectangleTabBar bg="#689C26">
+            <TabText>하루목표</TabText>
+          </RectangleTabBar>
         </RectangleBox>
       </MainRow>
     </MainLayout>
@@ -94,4 +104,12 @@ rounded-lg
   `,
 ]);
 const RectangleBox = tw.div``;
+
+const TabText = tw.div`
+flex
+items-center
+h-full
+text-white
+justify-center
+`;
 export default Main;
