@@ -2,10 +2,11 @@ import React, { useMemo } from 'react';
 import tw, { styled } from 'twin.macro';
 import MemoPad from '@components/MemoPad';
 import { css } from '@emotion/react';
-import { SVGS } from 'public/assets/svg';
+import { SVGS } from 'src/icons';
+
 const Main = () => {
   const grayCircleList = useMemo(
-    () => Array.from({ length: 16 }, (_, i) => <GrayCircle />),
+    () => Array.from({ length: 16 }, (_, i) => <GrayCircle key={i} />),
     [],
   );
   return (
@@ -13,10 +14,18 @@ const Main = () => {
       <MainRow>
         <CircleBox>{grayCircleList}</CircleBox>
         <div className="flex h-full w-full flex-col p-4 ">
-          <div>
-            <Text>오늘의 할일 (9가지마법)</Text>
-            {/* <SVGS.PLUS_BUTTON /> */}
+          <div className="flex justify-center">
+            <ImageWrapper>
+              <SVGS.ARROW_LEFT />
+            </ImageWrapper>
+            <div className="flex ">
+              <Text>오늘의 할일 (9가지마법)</Text>
+              <ImageWrapper>
+                <SVGS.PLUS_BUTTON />
+              </ImageWrapper>
+            </div>
           </div>
+
           <div className="mt-2 flex flex-wrap justify-center">
             <MemoPad bg="#FFBDAE" />
             <MemoPad bg="#FFC470" />
@@ -41,7 +50,7 @@ const Main = () => {
           <RectangleTabBar bg="#FA7719">
             <TabText>한달목표</TabText>
           </RectangleTabBar>
-          <RectangleTabBar bg="#D7DB27">
+          <RectangleTabBar bg="#BEC12D">
             <TabText>일주일목표</TabText>
           </RectangleTabBar>
           <RectangleTabBar bg="#689C26">
@@ -111,5 +120,11 @@ items-center
 h-full
 text-white
 justify-center
+`;
+const ImageWrapper = tw.div`
+ml-2
+mr-5
+w-5
+h-5
 `;
 export default Main;
