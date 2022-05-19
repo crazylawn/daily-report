@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useCallback } from 'react';
 import tw, { styled } from 'twin.macro';
 import MemoPad from '@components/MemoPad';
 import { css } from '@emotion/react';
@@ -9,6 +9,13 @@ const Main = () => {
     () => Array.from({ length: 16 }, (_, i) => <GrayCircle key={i} />),
     [],
   );
+
+  const handleMemoAdd = useCallback(() => {
+    alert('더하기');
+  }, []);
+  const handleMemoSave = useCallback(() => {
+    alert('저장하기');
+  }, []);
   return (
     <MainLayout>
       <MainRow>
@@ -20,7 +27,7 @@ const Main = () => {
             </ImageWrapper>
             <div className="flex ">
               <Text>오늘의 할일 (9가지마법)</Text>
-              <ImageWrapper>
+              <ImageWrapper onClick={handleMemoAdd}>
                 <SVGS.PLUS_BUTTON />
               </ImageWrapper>
             </div>
@@ -38,7 +45,10 @@ const Main = () => {
             <MemoPad bg="#FFEA79" />
           </div>
           <div className="mt-7 flex justify-center">
-            <button className=" h-full w-1/6 rounded-lg bg-dark-grayish-red text-white">
+            <button
+              className=" h-full w-1/6 rounded-lg bg-dark-grayish-red text-white"
+              onClick={handleMemoSave}
+            >
               저장
             </button>
           </div>
@@ -126,5 +136,6 @@ ml-2
 mr-5
 w-5
 h-5
+cursor-pointer
 `;
 export default Main;
