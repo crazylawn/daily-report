@@ -1,18 +1,24 @@
-import React, { useMemo, useCallback } from 'react';
+import React, { useMemo, useCallback, useState } from 'react';
 import tw, { styled } from 'twin.macro';
 import MemoPad from '@components/MemoPad';
 import { css } from '@emotion/react';
 import { SVGS } from 'src/icons';
 
-const Main = () => {
+const Main = ({}: {}) => {
+  const [memoComponent, setMemoComponent] = useState<any[]>([]);
+  const color = ['#FFC470', '#FFBDAE', '#B1D0FF', '#FFEA79'];
+  let num = Math.floor(Math.random() * color.length);
+  let colorSelect = color[num];
+
   const grayCircleList = useMemo(
     () => Array.from({ length: 16 }, (_, i) => <GrayCircle key={i} />),
     [],
   );
 
   const handleMemoAdd = useCallback(() => {
-    alert('더하기');
-  }, []);
+    setMemoComponent([...memoComponent, <MemoPad bg={colorSelect} />]);
+  }, [memoComponent]);
+
   const handleMemoSave = useCallback(() => {
     alert('저장하기');
   }, []);
@@ -34,15 +40,7 @@ const Main = () => {
           </div>
 
           <div className="mt-2 flex flex-wrap justify-center">
-            <MemoPad bg="#FFBDAE" />
-            <MemoPad bg="#FFC470" />
-            <MemoPad bg="#FFBDAE" />
-            <MemoPad bg="#FFBDAE" />
-            <MemoPad bg="#FFC470" />
-            <MemoPad bg="#B1D0FF" />
-            <MemoPad bg="#FFEA79" />
-            <MemoPad bg="#B1D0FF" />
-            <MemoPad bg="#FFEA79" />
+            {memoComponent}
           </div>
           <div className="mt-7 flex justify-center">
             <button

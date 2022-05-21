@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import tw, { styled } from 'twin.macro';
 import { css } from '@emotion/react';
 
 interface MemoPadProps {
-  bg?: string;
+  bg?: any;
   content?: string;
 }
 const MemoPad = ({ bg, content, ...props }: MemoPadProps) => {
@@ -14,7 +14,7 @@ const MemoPad = ({ bg, content, ...props }: MemoPadProps) => {
   );
 };
 
-const MemoWrapper = styled.div<{ bg?: string }>(({ bg }) => [
+const MemoWrapper = styled.div<{ bg?: any }>(({ bg }) => [
   tw`
   w-52
   h-52
@@ -27,7 +27,7 @@ const MemoWrapper = styled.div<{ bg?: string }>(({ bg }) => [
     background-color: ${bg};
   `,
 ]);
-const MemoText = styled.textarea<{ bg?: string }>(({ bg }) => [
+const MemoText = styled.textarea<{ bg?: any }>(({ bg }) => [
   tw`
 h-full
 w-full
