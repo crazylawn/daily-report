@@ -1,15 +1,30 @@
-import React, { ReactElement } from 'react';
+import React, { useCallback, ReactElement } from 'react';
 import tw, { styled } from 'twin.macro';
 import { css } from '@emotion/react';
+import { SVGS } from '@icons';
 
-interface MemoPadProps {
-  bg?: any;
+export interface MemoPadProps {
+  bg: any;
   content?: string;
+  onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  onRemove?: () => void;
 }
-const MemoPad = ({ bg, content, ...props }: MemoPadProps) => {
+
+const MemoPad = ({
+  bg,
+  content,
+  onChange,
+  onRemove,
+  ...props
+}: MemoPadProps) => {
   return (
     <MemoWrapper bg={bg} {...props}>
-      <MemoText bg={bg}>{content}</MemoText>
+      <div>
+        <ImageWrapper onClick={onRemove}>
+          <SVGS.X_BUTTON />
+        </ImageWrapper>
+        <MemoTextArea bg={bg} onChange={onChange} />
+      </div>
     </MemoWrapper>
   );
 };
@@ -22,12 +37,11 @@ const MemoWrapper = styled.div<{ bg?: any }>(({ bg }) => [
   p-2
   m-2
   `,
-
   css`
     background-color: ${bg};
   `,
 ]);
-const MemoText = styled.textarea<{ bg?: any }>(({ bg }) => [
+const MemoTextArea = styled.textarea<{ bg?: any }>(({ bg }) => [
   tw`
 h-full
 w-full
@@ -38,4 +52,10 @@ resize-none
     background-color: ${bg};
   `,
 ]);
+
+const ImageWrapper = tw.div`
+flex
+justify-end
+cursor-pointer
+`;
 export default MemoPad;

@@ -4,10 +4,28 @@ import MemoPad from '@components/MemoPad';
 import { css } from '@emotion/react';
 import { SVGS } from 'src/icons';
 import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
-import useMemoPad from 'store/memoStore';
+import { useMemoPad, useText, useTodo, UseTodoProps } from 'store/memoStore';
+import Select from '@components/Select';
 
 const Main = ({}: {}) => {
-  const [memoComponent, setMemoComponent] = useState<any[]>([]);
+  //메모지 전체 리스트
+  const [memoComponent, setMemoComponent] = useTodo((state: UseTodoProps) => [
+    state.todoList,
+    state.setTodoList,
+  ]);
+  const [filter, setFilter] = useTodo((state: UseTodoProps) => [
+    state.todoListFilter,
+    state.setTodoListFilter,
+  ]);
+  //메모지텍스트
+  const [memoText, setMemoText] = useState('');
+  // const [memoText, setMemoText] = useTodo((state: any) => [
+  //   state.todoText,
+  //   state.setTodoText,
+  // ]);
+
+  //완료한일, 완료하지 못한일
+  const optionData = ['all', 'complete', 'unComplete'];
   //메모지 색깔 랜덤으로 바꿔주기
   const color = ['#FFC470', '#FFBDAE', '#B1D0FF', '#FFEA79'];
   let num = Math.floor(Math.random() * color.length);
@@ -16,25 +34,54 @@ const Main = ({}: {}) => {
   //react-query Provider setting
   const queryClient = new QueryClient();
 
-  //zustand 로 폰트 사이즈 올리기
+  //zustand
+
+  //폰트 사이즈 올리기
   const fontSize = useMemoPad((state: any) => state.fontSize);
-  const upFontSize = useMemoPad((state: any) => state.upFontSize);
+  // zustand 로 필터링된 오늘리스트 가져오기
+  const todoList = useTodo((state: UseTodoProps) => state.filteredTodoList());
+  //어떠한 경우에만 값을 변경해주겠다. 현재상태랑 === 옛날상태가 같을때만
+  const upFontSize = useMemoPad(
+    (state: any) => state.upFontSize,
+    (oldState: any, newState: any) => oldState === newState,
+  );
+
   const grayCircleList = useMemo(
     () => Array.from({ length: 16 }, (_, i) => <GrayCircle key={i} />),
     [],
   );
 
+  const onChange = useCallback(
+    (
+      e:
+        | React.ChangeEvent<HTMLTextAreaElement>
+        | React.ChangeEvent<HTMLSelectElement>,
+    ) => {
+      setMemoText(e.target.value);
+      setFilter(e.target.value);
+    },
+    [memoText],
+  );
   const handleMemoAdd = useCallback(() => {
-    setMemoComponent([
-      ...memoComponent,
-      <MemoPad bg={colorSelect} key={num} />,
-    ]);
-  }, [memoComponent]);
+    setMemoText('');
+    const newItems = { bg: colorSelect, content: memoText };
+
+    setMemoComponent([...memoComponent, newItems]);
+  }, [memoComponent, memoText]);
 
   const handleMemoSave = useCallback(() => {
     alert('저장하기');
   }, []);
+  const handleMemoDelete = useCallback(
+    (i: number) => {
+      const _memoCompoent = [...memoComponent];
+      _memoCompoent.splice(i, 1);
+      setMemoComponent(_memoCompoent);
+      console.log(i, memoComponent);
+    },
 
+    [memoComponent],
+  );
   function MemoGetQuery() {
     const { isLoading, error, data } = useQuery(
       'data',
@@ -60,14 +107,12 @@ const Main = ({}: {}) => {
                 <SVGS.ARROW_LEFT />
               </ImageWrapper>
               <div className="flex ">
+                <Select
+                  optionData={optionData}
+                  filter={filter}
+                  onChange={onChange}
+                />
                 <Text style={{ fontSize }}>오늘의 할일 (9가지마법)</Text>
-                <div>
-                  <div>
-                    {' '}
-                    (※)폰트사이즈를 Zustand 에 넣어서 fontaize 관리 해보기
-                  </div>
-                  <button onClick={upFontSize}>클릭하면 폰트 사이즈업!</button>
-                </div>
                 <ImageWrapper onClick={handleMemoAdd}>
                   <SVGS.PLUS_BUTTON />
                 </ImageWrapper>
@@ -75,16 +120,31 @@ const Main = ({}: {}) => {
             </div>
 
             <div className="mt-2 flex flex-wrap justify-center">
-              {memoComponent}
+              {console.log('메모', memoComponent)}
+              {memoComponent?.map((item: any, i: number) => {
+                return (
+                  <MemoPad
+                    bg={item.bg}
+                    key={i}
+                    content={item.content}
+                    onChange={onChange}
+                    onRemove={() => handleMemoDelete(i)}
+                  />
+                );
+              })}
             </div>
-            <div className="mt-7 flex justify-center">
-              <button
-                className=" h-full w-1/6 rounded-lg bg-dark-grayish-red text-white"
-                onClick={handleMemoSave}
-              >
-                저장
-              </button>
-            </div>
+            {memoComponent.length > 0 ? (
+              <div className="mt-7 flex justify-center">
+                <button
+                  className=" h-full w-1/6 rounded-lg bg-dark-grayish-red text-white"
+                  onClick={handleMemoSave}
+                >
+                  저장
+                </button>
+              </div>
+            ) : (
+              ''
+            )}
           </div>
           <RectangleBox>
             <RectangleTabBar bg="#E14141">
