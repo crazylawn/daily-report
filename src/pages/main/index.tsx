@@ -1,6 +1,6 @@
 import React from 'react';
 import tw from 'twin.macro';
-import MemoPad from '@components/MemoPad';
+import MemoPad from '@components/memoPad';
 const Main = () => {
   return (
     <div>

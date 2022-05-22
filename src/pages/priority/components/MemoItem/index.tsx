@@ -3,12 +3,17 @@ import tw, { styled } from 'twin.macro';
 import { css } from '@emotion/react';
 import { useDrag, DragSourceMonitor } from 'react-dnd';
 
-interface MemoItemProps {
+interface PriorityItemProps {
   bg?: string;
   content?: string;
   setItems?: any;
 }
-const MemoItem = ({ bg, content, setItems, ...props }: MemoItemProps) => {
+const PriorityItem = ({
+  bg,
+  content,
+  setItems,
+  ...props
+}: PriorityItemProps) => {
   const changeItemColumn = useCallback(
     (currentItem: any, columnName: string) => {
       setItems((prevState: any) => {
@@ -30,10 +35,14 @@ const MemoItem = ({ bg, content, setItems, ...props }: MemoItemProps) => {
       // 즉, 사용자가 드래그 후 버튼을 놓을때 수행해야하는 작업
 
       const dropResult: any = monitor.getDropResult();
-      if (dropResult && dropResult.content === 'Todo List') {
+      if (dropResult && dropResult.name === 'Todo List') {
         changeItemColumn(item, 'Todo List');
-      } else {
+      } else if (dropResult && dropResult.name === 'No Todo List') {
         changeItemColumn(item, 'No Todo List');
+      } else if (dropResult && dropResult.name === 'Much List') {
+        changeItemColumn(item, 'Much List');
+      } else {
+        changeItemColumn(item, 'Urgent workList');
       }
     },
     collect: (monitor: DragSourceMonitor) => ({
@@ -42,13 +51,13 @@ const MemoItem = ({ bg, content, setItems, ...props }: MemoItemProps) => {
   });
   const opacity = isDragging ? 0.4 : 1;
   return (
-    <MemoWrapper ref={drag} bg={bg} {...props} style={{ opacity }}>
-      <MemoText>{content}</MemoText>
-    </MemoWrapper>
+    <PriorityWrapper ref={drag} bg={bg} {...props} style={{ opacity }}>
+      <PriorityText>{content}</PriorityText>
+    </PriorityWrapper>
   );
 };
 
-const MemoWrapper = styled.div<{ bg?: string }>(({ bg }) => [
+const PriorityWrapper = styled.div<{ bg?: string }>(({ bg }) => [
   tw`
   w-60
   h-60
@@ -60,7 +69,7 @@ const MemoWrapper = styled.div<{ bg?: string }>(({ bg }) => [
     background-color: ${bg};
   `,
 ]);
-const MemoText = tw.div`
+const PriorityText = tw.div`
 
 `;
-export default MemoItem;
+export default PriorityItem;
