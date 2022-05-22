@@ -93,7 +93,6 @@ const Main = ({}: {}) => {
   }, [memoComponent]);
   //메모지 데이터 저장하는 함수
   const handleMemoSave = useCallback(() => {
-    console.log('메모지', memoComponent);
     localStorage.setItem('memoItem', JSON.stringify(memoComponent));
     // router.push('')
   }, [memoComponent]);
