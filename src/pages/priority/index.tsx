@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { DndProvider, useDrag } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-import MemoItem from './components/MemoItem';
+import PriorityPad from './components/PriorityPad';
 import DndColumn from '@components/DndColumn';
 
 interface PriorityProps {
@@ -27,7 +27,7 @@ const Priority = () => {
       .filter((item) => item.column === columnName)
       .map((item) => {
         return (
-          <MemoItem
+          <PriorityPad
             key={item.id}
             bg="red"
             content={item.content}

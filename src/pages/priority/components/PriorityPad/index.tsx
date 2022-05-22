@@ -3,17 +3,12 @@ import tw, { styled } from 'twin.macro';
 import { css } from '@emotion/react';
 import { useDrag, DragSourceMonitor } from 'react-dnd';
 
-interface PriorityItemProps {
+interface PriorityPadProps {
   bg?: string;
   content?: string;
   setItems?: any;
 }
-const PriorityItem = ({
-  bg,
-  content,
-  setItems,
-  ...props
-}: PriorityItemProps) => {
+const PriorityPad = ({ bg, content, setItems, ...props }: PriorityPadProps) => {
   const changeItemColumn = useCallback(
     (currentItem: any, columnName: string) => {
       setItems((prevState: any) => {
@@ -72,4 +67,4 @@ const PriorityWrapper = styled.div<{ bg?: string }>(({ bg }) => [
 const PriorityText = tw.div`
 
 `;
-export default PriorityItem;
+export default PriorityPad;
