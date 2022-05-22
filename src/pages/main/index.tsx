@@ -206,10 +206,7 @@ justify-center
 `;
 const MainRow = tw.div`
 flex
-sm:w-full h-full
-md:w-full h-full
-lg:w-2/4  h-full
-xl:w-2/4  h-full
+w-full h-full
 bg-more-light-grayish-red
 rounded-lg
 

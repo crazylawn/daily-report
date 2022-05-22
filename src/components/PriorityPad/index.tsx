@@ -35,6 +35,7 @@ export const PriorityPad = ({
       // 즉, 사용자가 드래그 후 버튼을 놓을때 수행해야하는 작업
 
       const dropResult: any = monitor.getDropResult();
+      console.log('[dropResult]', dropResult && dropResult.name);
       if (dropResult && dropResult.name === 'Todo List') {
         changeItemColumn(item, 'Todo List');
       } else if (dropResult && dropResult.name === 'No Todo List') {
@@ -59,9 +60,10 @@ export const PriorityPad = ({
 
 const PriorityWrapper = styled.div<{ bg?: string }>(({ bg }) => [
   tw`
-  w-60
-  h-60
+  w-56
+  h-56
   shadow-lg
+  text-green-800
   p-4
   `,
 

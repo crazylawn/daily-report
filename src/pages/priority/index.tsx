@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import tw, { styled } from 'twin.macro';
 import { DndProvider, useDrag } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { PriorityPad } from '@components/PriorityPad';
@@ -27,7 +28,7 @@ const Priority = () => {
         return (
           <PriorityPad
             key={item.id}
-            bg="red"
+            bg="black"
             content={item.content}
             setItems={setItems}
           />
@@ -35,25 +36,41 @@ const Priority = () => {
       });
   };
   return (
-    <div>
-      <DndProvider backend={HTML5Backend}>
-        <div className="flex">
-          <DndColumn title="Todo List">
-            {returnItemsForColumn('Todo List')}
-          </DndColumn>
-          <DndColumn title="No Todo List">
-            {returnItemsForColumn('No Todo List')}
-          </DndColumn>
-          <DndColumn title="Much List">
-            {returnItemsForColumn('Much List')}
-          </DndColumn>
-          <DndColumn title="Urgent workList">
-            {returnItemsForColumn('Urgent workList')}
-          </DndColumn>
-        </div>
-      </DndProvider>
-    </div>
+    <DndProvider backend={HTML5Backend}>
+      <PriorityLayout>
+        <PriorityRow>
+          <div className="flex w-full bg-more-light-grayish-red">
+            <DndColumn title="Todo List">
+              {returnItemsForColumn('Todo List')}
+            </DndColumn>
+            <DndColumn title="No Todo List">
+              {returnItemsForColumn('No Todo List')}
+            </DndColumn>
+            <DndColumn title="Much List">
+              {returnItemsForColumn('Much List')}
+            </DndColumn>
+            <DndColumn title="Urgent workList">
+              {returnItemsForColumn('Urgent workList')}
+            </DndColumn>
+          </div>
+        </PriorityRow>
+      </PriorityLayout>
+    </DndProvider>
   );
 };
+
+const PriorityLayout = tw.div`
+w-full
+h-full
+flex items-center
+justify-center
+`;
+
+const PriorityRow = tw.div`
+flex
+w-full h-full
+bg-more-light-grayish-red
+rounded-lg
+`;
 
 export default Priority;

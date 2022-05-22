@@ -15,15 +15,26 @@ const DndColumn = ({ bg, children, className, title }: DndColumnProps) => {
   });
   return (
     <DndWrapper ref={drop}>
-      {title}
-      {children}
+      <DndBox>
+        {title}
+        {children}
+      </DndBox>
     </DndWrapper>
   );
 };
 
 const DndWrapper = tw.div`
+sm:w-full h-full
+md:w-full h-full
+w-20
+// h-257
+min-h-full
+bg-more-light-grayish-red
+`;
+const DndBox = tw.div`
 bg-grayish-red
-w-96
-h-96
+rounded-lg
+m-5
+min-h-screen
 `;
 export default DndColumn;
