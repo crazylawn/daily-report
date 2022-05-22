@@ -10,11 +10,11 @@ import Select from '@components/Select';
 
 const Main = ({}: {}) => {
   //메모지 전체 리스트
-  const [memoComponent, setMemoComponent] = useTodo((state: UseTodoProps) => [
+  const [memoComponent, setMemoComponent] = useTodo((state: any) => [
     state.todoList,
     state.setTodoList,
   ]);
-  const [filter, setFilter] = useTodo((state: UseTodoProps) => [
+  const [filter, setFilter] = useTodo((state: any) => [
     state.todoListFilter,
     state.setTodoListFilter,
   ]);
@@ -36,7 +36,7 @@ const Main = ({}: {}) => {
   //폰트 사이즈 올리기
   const fontSize = useMemoPad((state: any) => state.fontSize);
   // zustand 로 필터링된 오늘리스트 가져오기
-  const todoList = useTodo((state: UseTodoProps) => state.filteredTodoList());
+  const todoList = useTodo((state: any) => state.filteredTodoList());
   //어떠한 경우에만 값을 변경해주겠다. 현재상태랑 === 옛날상태가 같을때만
   const upFontSize = useMemoPad(
     (state: any) => state.upFontSize,
@@ -88,7 +88,10 @@ const Main = ({}: {}) => {
   //메모지 데이터 저장하는 함수
   const handleMemoSave = useCallback(() => {
     localStorage.setItem('memoItem', JSON.stringify(memoComponent));
-    // router.push('')
+    if (memoComponent) {
+      alert('저장되었습니다.');
+      router.push('/priority');
+    }
   }, [memoComponent]);
   //메모지 데이터 하나씩 지우는 함수
   const handleMemoDelete = useCallback(

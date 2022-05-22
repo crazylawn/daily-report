@@ -8,7 +8,12 @@ interface PriorityPadProps {
   content?: string;
   setItems?: any;
 }
-const PriorityPad = ({ bg, content, setItems, ...props }: PriorityPadProps) => {
+export const PriorityPad = ({
+  bg,
+  content,
+  setItems,
+  ...props
+}: PriorityPadProps) => {
   const changeItemColumn = useCallback(
     (currentItem: any, columnName: string) => {
       setItems((prevState: any) => {
@@ -67,4 +72,3 @@ const PriorityWrapper = styled.div<{ bg?: string }>(({ bg }) => [
 const PriorityText = tw.div`
 
 `;
-export default PriorityPad;

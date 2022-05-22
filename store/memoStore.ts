@@ -14,23 +14,22 @@ interface TodoList {
 }
 export interface UseTodoProps {
   list: TodoList[];
-  filter: any;
+  filter: string;
   item: any;
   todoList: TodoList[];
-  setTodoList: () => void;
+  setTodoList: (todoList: TodoList[]) => void;
   todoListFilter: string;
-  setTodoListFilter: () => void;
-  filteredTodoList: () => void;
+  setTodoListFilter: (todoListFilter: string) => void;
+  filteredTodoList: Function;
   todoListState: Function;
 }
-
-export const useTodo = create((set, get) => ({
+export const useTodo = create<any>((set: any, get: any) => ({
   //오늘 할일 리스트
   todoList: [],
   setTodoList: (list: UseTodoProps) => set(() => ({ todoList: list })),
   //오늘할일 필터링   : 한것 , 못한것
   todoListFilter: 'all',
-  setTodoListFilter: (filter: UseTodoProps) =>
+  setTodoListFilter: (filter: any) =>
     set(() => ({
       todoListFilter: filter,
     })),

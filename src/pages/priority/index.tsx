@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { DndProvider, useDrag } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-import PriorityPad from './components/PriorityPad';
+import { PriorityPad } from '@components/PriorityPad';
 import DndColumn from '@components/DndColumn';
 
 interface PriorityProps {
