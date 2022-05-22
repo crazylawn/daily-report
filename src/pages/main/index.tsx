@@ -1,4 +1,4 @@
-import React, { useMemo, useCallback, useState } from 'react';
+import React, { useMemo, useCallback, useState, useEffect } from 'react';
 import tw, { styled } from 'twin.macro';
 import { css } from '@emotion/react';
 import { SVGS } from 'src/icons';
@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
 import { useMemoPad, useText, useTodo, UseTodoProps } from 'store/memoStore';
 import Select from '@components/Select';
 import MemoPad from '@components/MemoPad';
+import { useRouter } from 'next/router';
 
 const Main = ({}: {}) => {
   //메모지 전체 리스트
@@ -17,12 +18,9 @@ const Main = ({}: {}) => {
     state.todoListFilter,
     state.setTodoListFilter,
   ]);
+
   //메모지텍스트
   const [memoText, setMemoText] = useState('');
-  // const [memoText, setMemoText] = useTodo((state: any) => [
-  //   state.todoText,
-  //   state.setTodoText,
-  // ]);
 
   //완료한일, 완료하지 못한일
   const optionData = ['all', 'complete', 'unComplete'];
@@ -33,7 +31,7 @@ const Main = ({}: {}) => {
 
   //react-query Provider setting
   const queryClient = new QueryClient();
-
+  const router = useRouter();
   // **zustand
 
   //폰트 사이즈 올리기
@@ -62,6 +60,7 @@ const Main = ({}: {}) => {
     },
     [memoText],
   );
+  //메모지 내용 추가하는 함수
   const handleChangeContent = useCallback(
     (i: number, text: string) => {
       const _memoCompoent = [...memoComponent];
@@ -74,6 +73,7 @@ const Main = ({}: {}) => {
     },
     [memoComponent],
   );
+  //메모지 할일체크하는 함수
   const handleChangeToggle = useCallback(
     (i: number, isComplete: boolean) => {
       const _memoCompoent = [...memoComponent];
@@ -86,20 +86,23 @@ const Main = ({}: {}) => {
     },
     [memoComponent],
   );
+  //메모지 데이터 추가하는 함수
   const handleMemoAdd = useCallback(() => {
     const newItems = { bg: colorSelect, content: '', isComplete: false };
     setMemoComponent([...memoComponent, newItems]);
   }, [memoComponent]);
-
+  //메모지 데이터 저장하는 함수
   const handleMemoSave = useCallback(() => {
-    alert('저장하기');
-  }, []);
+    console.log('메모지', memoComponent);
+    localStorage.setItem('memoItem', JSON.stringify(memoComponent));
+    // router.push('')
+  }, [memoComponent]);
+  //메모지 데이터 하나씩 지우는 함수
   const handleMemoDelete = useCallback(
     (i: number) => {
       const _memoCompoent = [...memoComponent];
       _memoCompoent.splice(i, 1);
       setMemoComponent(_memoCompoent);
-      console.log(i, memoComponent);
     },
 
     [memoComponent],
@@ -117,6 +120,17 @@ const Main = ({}: {}) => {
     if (error) return <div>...error</div>;
     return <div>{data.name}</div>;
   }
+  //일단 저장하는 api를 안만들어서 localStorage 에 저장함!
+  useEffect(() => {
+    if (!memoComponent) return;
+    const localMemoItem = localStorage.getItem('memoItem');
+    if (localMemoItem !== null) {
+      const parseMemoItem = JSON.parse(localMemoItem);
+      setMemoComponent(parseMemoItem);
+    }
+
+    return () => {};
+  }, []);
   return (
     <MainLayout>
       <QueryClientProvider client={queryClient}>
