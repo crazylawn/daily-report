@@ -4,9 +4,9 @@ import { css } from '@emotion/react';
 import { SVGS } from 'src/icons';
 import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
 import { useMemoPad, useTodo, UseTodoProps } from 'store/memoStore';
-import Select from '@components/Select';
 import MemoPad from '@components/MemoPad';
 import { useRouter } from 'next/router';
+import Select from '@components/Select';
 
 const Main = ({}: {}) => {
   //메모지 전체 리스트
@@ -33,7 +33,6 @@ const Main = ({}: {}) => {
   const queryClient = new QueryClient();
   const router = useRouter();
   // **zustand
-
   //폰트 사이즈 올리기
   const fontSize = useMemoPad((state: any) => state.fontSize);
   // zustand 로 필터링된 오늘리스트 가져오기
@@ -50,15 +49,10 @@ const Main = ({}: {}) => {
   );
 
   const onChange = useCallback(
-    (
-      e:
-        | React.ChangeEvent<HTMLTextAreaElement>
-        | React.ChangeEvent<HTMLSelectElement>,
-    ) => {
-      setMemoText(e.target.value);
+    (e: React.ChangeEvent<HTMLSelectElement>) => {
       setFilter(e.target.value);
     },
-    [memoText],
+    [filter],
   );
   //메모지 내용 추가하는 함수
   const handleChangeContent = useCallback(
@@ -127,7 +121,6 @@ const Main = ({}: {}) => {
       const parseMemoItem = JSON.parse(localMemoItem);
       setMemoComponent(parseMemoItem);
     }
-
     return () => {};
   }, []);
   return (
