@@ -3,7 +3,7 @@ import tw, { styled } from 'twin.macro';
 import { css } from '@emotion/react';
 import { SVGS } from 'src/icons';
 import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
-import { useMemoPad, useText, useTodo, UseTodoProps } from 'store/memoStore';
+import { useMemoPad, useTodo, UseTodoProps } from 'store/memoStore';
 import Select from '@components/Select';
 import MemoPad from '@components/MemoPad';
 import { useRouter } from 'next/router';
