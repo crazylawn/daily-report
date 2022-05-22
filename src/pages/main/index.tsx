@@ -1,11 +1,11 @@
 import React, { useMemo, useCallback, useState } from 'react';
 import tw, { styled } from 'twin.macro';
-import MemoPad from '@components/MemoPad';
 import { css } from '@emotion/react';
 import { SVGS } from 'src/icons';
 import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
 import { useMemoPad, useText, useTodo, UseTodoProps } from 'store/memoStore';
 import Select from '@components/Select';
+import MemoPad from '@components/MemoPad';
 
 const Main = ({}: {}) => {
   //메모지 전체 리스트
@@ -34,7 +34,7 @@ const Main = ({}: {}) => {
   //react-query Provider setting
   const queryClient = new QueryClient();
 
-  //zustand
+  // **zustand
 
   //폰트 사이즈 올리기
   const fontSize = useMemoPad((state: any) => state.fontSize);
@@ -62,12 +62,34 @@ const Main = ({}: {}) => {
     },
     [memoText],
   );
+  const handleChangeContent = useCallback(
+    (i: number, text: string) => {
+      const _memoCompoent = [...memoComponent];
+      const modify = {
+        ..._memoCompoent[i],
+        content: text,
+      };
+      _memoCompoent.splice(i, 1, modify);
+      setMemoComponent(_memoCompoent);
+    },
+    [memoComponent],
+  );
+  const handleChangeToggle = useCallback(
+    (i: number, isComplete: boolean) => {
+      const _memoCompoent = [...memoComponent];
+      const toggle = {
+        ..._memoCompoent[i],
+        isComplete: !isComplete,
+      };
+      _memoCompoent.splice(i, 1, toggle);
+      setMemoComponent(_memoCompoent);
+    },
+    [memoComponent],
+  );
   const handleMemoAdd = useCallback(() => {
-    setMemoText('');
-    const newItems = { bg: colorSelect, content: memoText };
-
+    const newItems = { bg: colorSelect, content: '', isComplete: false };
     setMemoComponent([...memoComponent, newItems]);
-  }, [memoComponent, memoText]);
+  }, [memoComponent]);
 
   const handleMemoSave = useCallback(() => {
     alert('저장하기');
@@ -120,14 +142,17 @@ const Main = ({}: {}) => {
             </div>
 
             <div className="mt-2 flex flex-wrap justify-center">
-              {console.log('메모', memoComponent)}
               {memoComponent?.map((item: any, i: number) => {
                 return (
                   <MemoPad
                     bg={item.bg}
                     key={i}
+                    done={item.isComplete}
                     content={item.content}
-                    onChange={onChange}
+                    onToggle={() => handleChangeToggle(i, item.isComplete)}
+                    onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                      handleChangeContent(i, e.target.value)
+                    }
                     onRemove={() => handleMemoDelete(i)}
                   />
                 );

@@ -6,6 +6,8 @@ import { SVGS } from '@icons';
 export interface MemoPadProps {
   bg: any;
   content?: string;
+  done?: boolean;
+  onToggle?: () => void;
   onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   onRemove?: () => void;
 }
@@ -13,6 +15,8 @@ export interface MemoPadProps {
 const MemoPad = ({
   bg,
   content,
+  done,
+  onToggle,
   onChange,
   onRemove,
   ...props
@@ -20,10 +24,28 @@ const MemoPad = ({
   return (
     <MemoWrapper bg={bg} {...props}>
       <div>
-        <ImageWrapper onClick={onRemove}>
-          <SVGS.X_BUTTON />
+        <ImageWrapper>
+          <CheckCircle done={done} onClick={onToggle}>
+            {done && <SVGS.CHECK_BUTTON />}
+          </CheckCircle>
+          <SVGS.X_BUTTON onClick={onRemove} />
         </ImageWrapper>
-        <MemoTextArea bg={bg} onChange={onChange} />
+        {done ? (
+          <MemoTextArea
+            bg={bg}
+            onChange={onChange}
+            value={content}
+            done={done}
+            readOnly
+          />
+        ) : (
+          <MemoTextArea
+            bg={bg}
+            onChange={onChange}
+            value={content}
+            done={done}
+          />
+        )}
       </div>
     </MemoWrapper>
   );
@@ -41,21 +63,58 @@ const MemoWrapper = styled.div<{ bg?: any }>(({ bg }) => [
     background-color: ${bg};
   `,
 ]);
-const MemoTextArea = styled.textarea<{ bg?: any }>(({ bg }) => [
-  tw`
+const MemoTextArea = styled.textarea<{ bg?: any; done?: boolean }>(
+  ({ bg, done }) => [
+    tw`
 h-full
 w-full
 outline-none
 resize-none
 `,
-  css`
-    background-color: ${bg};
-  `,
-]);
+    css`
+      background-color: ${bg};
+    `,
+    done
+      ? css`
+          text-decoration: line-through;
+        `
+      : css`
+          text-decoration-line: none;
+        `,
+  ],
+);
 
 const ImageWrapper = tw.div`
 flex
 justify-end
 cursor-pointer
 `;
+
+const CheckCircle = styled.div<{ done?: boolean }>([
+  tw`
+  flex
+  items-center
+  justify-center
+  w-9
+  h-9
+  rounded-2xl
+  border-2
+  border-solid
+  cursor-pointer
+  `,
+  ({ done }) =>
+    done
+      ? css`
+          border-color: blue;
+          color: blue;
+          & svg {
+            fill: blue;
+          }
+        `
+      : css`
+          border-color: white;
+          color: white;
+        `,
+]);
+
 export default MemoPad;

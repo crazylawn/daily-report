@@ -22,9 +22,8 @@ export interface UseTodoProps {
   setTodoListFilter: () => void;
   filteredTodoList: () => void;
   todoListState: Function;
-  todoText: string;
-  setTodoText: () => void;
 }
+
 export const useTodo = create((set, get) => ({
   //오늘 할일 리스트
   todoList: [],
@@ -35,12 +34,6 @@ export const useTodo = create((set, get) => ({
     set(() => ({
       todoListFilter: filter,
     })),
-  //텍스트 ...
-  todoText: '',
-  setTodoText: (todoText: UseTodoProps) =>
-    set(() => ({
-      todoText: todoText,
-    })),
   //필터링 조건
   filteredTodoList: () => {
     const filter = get().todoListFilter;
@@ -48,18 +41,19 @@ export const useTodo = create((set, get) => ({
     //switch 문
     switch (filter) {
       case 'complete':
-      // return list.filter((item: UseTodoProps) => item.isComplete);
+        return list.filter((item: any) => item.isComplete);
       case 'unComplete':
-      // return list.filter((item: UseTodoProps) => !item.isComplete);
+        return list.filter((item: any) => !item.isComplete);
       default:
         return list;
     }
   },
+
   todoListState: () => {
     const todoList = get().todoList;
     const totalNum = todoList.length;
     const totalCompleteNum = todoList.filter(
-      (item: UseTodoProps) => item.isComplete,
+      (item: any) => item.isComplete,
     ).length;
     const totalUnCompleteNum = totalNum - totalCompleteNum;
     const percentCompleted =
