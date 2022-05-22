@@ -1,7 +1,7 @@
 import React, { useCallback, ReactElement } from 'react';
 import tw, { styled } from 'twin.macro';
 import { css } from '@emotion/react';
-import { SVGS } from '@icons';
+import { SVGS } from 'src/icons';
 
 export interface MemoPadProps {
   bg: any;
