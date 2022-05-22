@@ -20,8 +20,6 @@ const Priority = () => {
     { id: 5, content: 'crazy5', column: 'Much List' },
   ]);
 
-  const [isFirstColumn, setIsFirstColumn] = useState<boolean>(true);
-
   const returnItemsForColumn = (columnName: string) => {
     return items
       .filter((item) => item.column === columnName)
@@ -36,9 +34,6 @@ const Priority = () => {
         );
       });
   };
-  // const PriorityItem = (
-  //   <MemoItem bg="red" setIsFirstColumn={setIsFirstColumn} />
-  // );
   return (
     <div>
       <DndProvider backend={HTML5Backend}>
