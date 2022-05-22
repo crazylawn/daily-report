@@ -19,9 +19,6 @@ const Main = ({}: {}) => {
     state.setTodoListFilter,
   ]);
 
-  //메모지텍스트
-  const [memoText, setMemoText] = useState('');
-
   //완료한일, 완료하지 못한일
   const optionData = ['all', 'complete', 'unComplete'];
   //메모지 색깔 랜덤으로 바꿔주기
