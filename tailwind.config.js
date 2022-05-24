@@ -16,6 +16,8 @@ module.exports = {
         'red-orange': '#FFBDAE',
         'more-light-grayish-red': '#EFE1E1',
         'light-gray': '#C4C4C4',
+        'dnd-red-orange': '#ffb6c1',
+        'washed-out-crimson': '#ffb3a7',
       },
       width: {
         128: '32rem',
