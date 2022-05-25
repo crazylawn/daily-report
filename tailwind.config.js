@@ -22,6 +22,8 @@ module.exports = {
         abriana: '#FAF0D7',
         'indian-khaki': '#C3B091',
         'mostly-desaturated-dark-orange': '#8E806A',
+        'magenta-pink': '#CE7BB0',
+        'dep-magenta-pink': '#A267AC',
       },
       width: {
         128: '32rem',
