@@ -29,10 +29,10 @@ md:w-full h-full
 w-20
 // h-257
 min-h-full
-bg-magenta-pink
+bg-sweet-corn
 `;
 const DndBox = tw.div`
-bg-dep-magenta-pink
+bg-froly
 
 rounded-lg
 m-5
