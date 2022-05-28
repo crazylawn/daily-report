@@ -19,7 +19,7 @@ module.exports = {
         'light-pink': '#ffb6c1',
         'washed-out-crimson': '#ffb3a7',
         'flyaway-blue': '#8CC0DE',
-        'citrine-White': '#FAF0D7',
+        'citrine-white': '#FAF0D7',
         'indian-khaki': '#C3B091',
         'mostly-desaturated-dark-orange': '#8E806A',
         hopbush: '#CE7BB0',
