@@ -54,32 +54,37 @@ const Main = ({}: {}) => {
   //메모지 내용 추가하는 함수
   const handleChangeContent = useCallback(
     (i: number, text: string) => {
-      const _memoCompoent = [...memoComponent];
+      const _memoComponent = [...memoComponent];
       const modify = {
-        ..._memoCompoent[i],
+        ..._memoComponent[i],
         content: text,
       };
-      _memoCompoent.splice(i, 1, modify);
-      setMemoComponent(_memoCompoent);
+      _memoComponent.splice(i, 1, modify);
+      setMemoComponent(_memoComponent);
     },
     [memoComponent],
   );
   //메모지 할일체크하는 함수
   const handleChangeToggle = useCallback(
     (i: number, isComplete: boolean) => {
-      const _memoCompoent = [...memoComponent];
+      const _memoComponent = [...memoComponent];
       const toggle = {
-        ..._memoCompoent[i],
+        ..._memoComponent[i],
         isComplete: !isComplete,
       };
-      _memoCompoent.splice(i, 1, toggle);
-      setMemoComponent(_memoCompoent);
+      _memoComponent.splice(i, 1, toggle);
+      setMemoComponent(_memoComponent);
     },
     [memoComponent],
   );
   //메모지 데이터 추가하는 함수
   const handleMemoAdd = useCallback(() => {
-    const newItems = { bg: colorSelect, content: '', isComplete: false };
+    const newItems = {
+      bg: colorSelect,
+      content: '',
+      isComplete: false,
+      column: 'Todo List',
+    };
     setMemoComponent([...memoComponent, newItems]);
   }, [memoComponent]);
   //메모지 데이터 저장하는 함수
@@ -93,9 +98,9 @@ const Main = ({}: {}) => {
   //메모지 데이터 하나씩 지우는 함수
   const handleMemoDelete = useCallback(
     (i: number) => {
-      const _memoCompoent = [...memoComponent];
-      _memoCompoent.splice(i, 1);
-      setMemoComponent(_memoCompoent);
+      const _memoComponent = [...memoComponent];
+      _memoComponent.splice(i, 1);
+      setMemoComponent(_memoComponent);
     },
 
     [memoComponent],
