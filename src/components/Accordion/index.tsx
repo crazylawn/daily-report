@@ -51,15 +51,20 @@ export const Accordion = () => {
             <AccordionYear
               className={
                 `accordion-year ${active}` +
-                (activeIndex !== idx ? 'text-gray-500 ' : 'text-black')
+                (activeIndex !== idx
+                  ? ' h-20 text-gray-500'
+                  : 'h-full text-black')
               }
               key={idx}
               role="presentation"
               onClick={() => onTitleClick(idx)}
             >
-              <div className="ml-20 flex  flex-1 border-t border-solid border-current py-5">
+              <div className="ml-20 flex  h-96 flex-1 border-t border-solid border-current py-5">
                 <div className="text-lg"> {datum.year}</div>
-                <div className="ml-5">{datum.main}</div>
+                <div className="ml-5 flex flex-col">
+                  <div>{datum.main}</div>
+                  <div className="mt-2"> 내용들</div>
+                </div>
               </div>
             </AccordionYear>
           );
