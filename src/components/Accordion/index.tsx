@@ -33,12 +33,9 @@ export const Accordion = () => {
           <AccordionYear
             className={
               `accordion-year ${active}` +
-              (activeIndex !== idx ? UnclickedYear : ClickedYear)
+              (activeIndex !== idx ? 'text-gray-500 ' : 'text-black')
             }
-            // className={
-            //   `accordion-year ${active}` +
-            //   (activeIndex !== idx ? UnclickedYear : ClickedYear)
-            // }
+            key={idx}
             role="presentation"
             onClick={() => onTitleClick(idx)}
           >
@@ -50,12 +47,7 @@ export const Accordion = () => {
   );
 };
 const YearAll = tw.div``;
-const UnclickedYear = tw.div`
-text-purple-500 
-`;
-const ClickedYear = tw.div`
-text-pink-700 
-`;
+
 const AccordionYear = styled.div`
   position: relative;
   display: flex;
