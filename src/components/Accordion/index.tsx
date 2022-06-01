@@ -44,7 +44,6 @@ export const Accordion = () => {
           );
         })}
       </YearAll>
-      {/* <div className="ml-20 flex-1  border-t border-solid border-current"> */}
       <YearContent>
         {Data.map((datum, idx) => {
           const active = idx === activeIndex ? 'active' : '';
@@ -58,7 +57,7 @@ export const Accordion = () => {
               role="presentation"
               onClick={() => onTitleClick(idx)}
             >
-              <div className="ml-20 flex  flex-1 border-t border-solid border-current">
+              <div className="ml-20 flex  flex-1 border-t border-solid border-current py-5">
                 <div className="text-lg"> {datum.year}</div>
                 <div className="ml-5">{datum.main}</div>
               </div>
@@ -66,7 +65,6 @@ export const Accordion = () => {
           );
         })}
       </YearContent>
-      {/* </div> */}
     </YearWrapper>
   );
 };
@@ -109,6 +107,7 @@ const AccordionYear = styled.div`
 const YearWrapper = tw.div`
 flex
 flex-row
-mr-7
-ml-7
+mx-7
+mt-7
+
 `;
