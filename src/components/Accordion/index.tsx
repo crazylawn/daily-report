@@ -25,36 +25,58 @@ export const Accordion = () => {
     setActiveIndex(idx);
   };
   return (
-    <YearAll>
-      {Data.map((datum, idx) => {
-        const active = idx === activeIndex ? 'active' : '';
-
-        return (
-          <AccordionYear
-            className={
-              `accordion-year ${active}` +
-              (activeIndex !== idx ? 'text-gray-500 ' : 'text-black')
-            }
-            key={idx}
-            role="presentation"
-            onClick={() => onTitleClick(idx)}
-          >
-            {datum.year}
-          </AccordionYear>
-        );
-      })}
-    </YearAll>
+    <YearWrapper>
+      <YearAll>
+        {Data.map((datum, idx) => {
+          const active = idx === activeIndex ? 'active' : '';
+          return (
+            <AccordionYear
+              className={
+                `accordion-year ${active}` +
+                (activeIndex !== idx ? 'text-gray-500 ' : 'text-black')
+              }
+              key={idx}
+              role="presentation"
+              onClick={() => onTitleClick(idx)}
+            >
+              {datum.year}
+            </AccordionYear>
+          );
+        })}
+      </YearAll>
+      <div className="ml-20 flex-1  border-t border-solid border-current">
+        <YearAll>
+          {Data.map((datum, idx) => {
+            const active = idx === activeIndex ? 'active' : '';
+            return (
+              <AccordionYear
+                className={
+                  `accordion-year ${active}` +
+                  (activeIndex !== idx ? 'text-gray-500 ' : 'text-black')
+                }
+                key={idx}
+                role="presentation"
+                onClick={() => onTitleClick(idx)}
+              >
+                <div className="flex">
+                  <div className="text-lg"> {datum.year}</div>
+                  <div className="ml-5">{datum.main}</div>
+                </div>
+              </AccordionYear>
+            );
+          })}
+        </YearAll>
+      </div>
+    </YearWrapper>
   );
 };
-const YearAll = tw.div``;
+const YearAll = tw.div`
+
+`;
 
 const AccordionYear = styled.div`
-  position: relative;
+  /* position: relative;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 30px;
-  height: 30px;
   border: 0;
   background-color: transparent;
   &:before,
@@ -79,5 +101,11 @@ const AccordionYear = styled.div`
       transform: rotate(360deg);
       transition-delay: 0.08s;
     }
-  }
+  } */
+`;
+
+const YearWrapper = tw.div`
+flex
+flex-row
+mr-7
 `;
