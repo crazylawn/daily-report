@@ -7,6 +7,7 @@ import { useMemoPad, useTodo, UseTodoProps } from 'store/memoStore';
 import MemoPad from '@components/MemoPad';
 import { useRouter } from 'next/router';
 import Select from '@components/Select';
+import { TargetAccordion } from '@components/Accordion/TargetAccordion';
 
 const Main = ({}: {}) => {
   //메모지 전체 리스트
@@ -105,6 +106,12 @@ const Main = ({}: {}) => {
 
     [memoComponent],
   );
+  // 년, 달, 일 클릭시 해당 페이지로 이동
+  const targetMovePage = useCallback((target: string) => {
+    if (target === 'year') {
+      router.push('/plan/year');
+    }
+  }, []);
   function MemoGetQuery() {
     const { isLoading, error, data } = useQuery(
       'data',
@@ -151,7 +158,6 @@ const Main = ({}: {}) => {
                 </ImageWrapper>
               </div>
             </div>
-
             <div className="mt-2 flex flex-wrap justify-center">
               {memoComponent?.map((item: any, i: number) => {
                 return (
@@ -184,7 +190,7 @@ const Main = ({}: {}) => {
           </div>
           <RectangleBox>
             <RectangleTabBar bg="#E14141">
-              <TabText>일년목표</TabText>
+              <TabText onClick={() => targetMovePage('year')}>일년목표</TabText>
             </RectangleTabBar>
             <RectangleTabBar bg="#FA7719">
               <TabText>한달목표</TabText>
@@ -241,6 +247,7 @@ ml-4
 
 const RectangleTabBar = styled.div<{ bg?: string }>(({ bg }) => [
   tw`
+transition duration-150 ease-out hover:ease-in
 h-1/4
 w-24
 rounded-lg
@@ -257,6 +264,7 @@ items-center
 h-full
 text-white
 justify-center
+cursor-pointer
 `;
 const ImageWrapper = tw.div`
 ml-2
