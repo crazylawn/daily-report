@@ -247,16 +247,13 @@ ml-4
 
 const RectangleTabBar = styled.div<{ bg?: string }>(({ bg }) => [
   tw`
-// transition ease-in-out delay-150 bg-blue-500 
-// hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300
 h-1/4
 w-24
 rounded-lg
 `,
   css`
     &:hover {
-      transform: rotateZ(45deg);
-      transform-origin: top left;
+      transform: translateX(-30%);
       transition: transform 1s;
       background-color: ${bg};
     }
