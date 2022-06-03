@@ -65,6 +65,7 @@ const Main = ({}: {}) => {
     },
     [memoComponent],
   );
+
   //메모지 할일체크하는 함수
   const handleChangeToggle = useCallback(
     (i: number, isComplete: boolean) => {
@@ -78,6 +79,7 @@ const Main = ({}: {}) => {
     },
     [memoComponent],
   );
+
   //메모지 데이터 추가하는 함수
   const handleMemoAdd = useCallback(() => {
     const newItems = {
@@ -88,6 +90,7 @@ const Main = ({}: {}) => {
     };
     setMemoComponent([...memoComponent, newItems]);
   }, [memoComponent]);
+
   //메모지 데이터 저장하는 함수
   const handleMemoSave = useCallback(() => {
     localStorage.setItem('memoItem', JSON.stringify(memoComponent));
@@ -96,6 +99,7 @@ const Main = ({}: {}) => {
       router.push('/priority');
     }
   }, [memoComponent]);
+
   //메모지 데이터 하나씩 지우는 함수
   const handleMemoDelete = useCallback(
     (i: number) => {
@@ -110,6 +114,12 @@ const Main = ({}: {}) => {
   const targetMovePage = useCallback((target: string) => {
     if (target === 'year') {
       router.push('/plan/year');
+    } else if (target === 'month') {
+      router.push('/plan/month');
+    } else if (target === 'week') {
+      router.push('/plan/week');
+    } else if (target === 'day') {
+      router.push('/plan/day');
     }
   }, []);
   function MemoGetQuery() {
@@ -193,13 +203,17 @@ const Main = ({}: {}) => {
               <TabText onClick={() => targetMovePage('year')}>일년목표</TabText>
             </RectangleTabBar>
             <RectangleTabBar bg="#FA7719">
-              <TabText>한달목표</TabText>
+              <TabText onClick={() => targetMovePage('month')}>
+                한달목표
+              </TabText>
             </RectangleTabBar>
             <RectangleTabBar bg="#BEC12D">
-              <TabText>일주일목표</TabText>
+              <TabText onClick={() => targetMovePage('week')}>
+                일주일목표
+              </TabText>
             </RectangleTabBar>
             <RectangleTabBar bg="#689C26">
-              <TabText>하루목표</TabText>
+              <TabText onClick={() => targetMovePage('day')}>하루목표</TabText>
             </RectangleTabBar>
           </RectangleBox>
         </MainRow>
