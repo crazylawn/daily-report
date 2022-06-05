@@ -8,7 +8,12 @@ import MemoPad from '@components/MemoPad';
 import { useRouter } from 'next/router';
 import Select from '@components/Select';
 import { TargetAccordion } from '@components/Accordion/TargetAccordion';
-
+import CustomAccordion from '@components/Accordion/CustomAccordion';
+import dynamic from 'next/dynamic';
+// import Mindmap from '@components/Mindmap';
+const DynamicComponent = dynamic(() => import('../../components/Mindmap'), {
+  ssr: false,
+});
 const Main = ({}: {}) => {
   //메모지 전체 리스트
   const [memoComponent, setMemoComponent] = useTodo((state: any) => [
@@ -168,6 +173,10 @@ const Main = ({}: {}) => {
                 </ImageWrapper>
               </div>
             </div>
+            {/* <CustomAccordion title="테스트1" content="테스트입니다1" />
+            <CustomAccordion title="테스트2" content="테스트입니다2" /> */}
+            {/* <Mindmap /> */}
+            <DynamicComponent />
             <div className="mt-2 flex flex-wrap justify-center">
               {memoComponent?.map((item: any, i: number) => {
                 return (
