@@ -20,10 +20,10 @@ const CustomAccordion = ({ title, content }: CustomAccordion) => {
   }
   return (
     <AccordionSection>
-      <button className={`accordion ${setActive}`} onClick={toggleAccordion}>
+      <Accordion className={`${setActive}`} onClick={toggleAccordion}>
         <AccordionTitle>{title}</AccordionTitle>
-        {/* <Icon className={`${setRotate}`} width={10} fill={'#777'} /> */}
-      </button>
+      </Accordion>
+      {/* <Icon className={`${setRotate}`} width={10} fill={'#777'} /> */}
       <AccordionContent ref={contentRef} style={{ maxHeight: `${setHeight}` }}>
         <AccordionText dangerouslySetInnerHTML={{ __html: content }} />
       </AccordionContent>
@@ -36,7 +36,7 @@ flex
 flex-col
 `;
 
-const Accordion = styled.div`
+const Accordion = styled.button`
   background-color: #eee;
   color: #444;
   cursor: pointer;
@@ -56,7 +56,6 @@ font-semibold
 text-sm
 text-left
 `;
-
 const AccordionIcon = styled.div`
   margin-left: auto;
   transition: transform 0.6s ease;
@@ -75,6 +74,7 @@ const AccordionText = tw.div`
 font-normal
 text-xs
 p-5
+h-80
 `;
 
 export default CustomAccordion;
