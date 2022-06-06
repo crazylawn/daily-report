@@ -3,15 +3,15 @@ import { styled } from 'twin.macro';
 
 export interface InputBoxProps {
   type: string;
-  placeholder: string;
+  placeholder?: string;
   value: string;
   onChange: () => void;
-  name: string;
-  onFocus: () => void;
-  readOnly: boolean;
-  hidden: boolean;
-  refs: string;
-  height: string;
+  name?: string;
+  onFocus?: any;
+  readOnly?: boolean;
+  hidden?: boolean;
+  refs?: string;
+  height?: string;
 }
 const InputBox = ({
   type,
