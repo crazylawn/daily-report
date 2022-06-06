@@ -22,6 +22,8 @@ const Main = ({}: {}) => {
 
   //완료한일, 완료하지 못한일
   const optionData = ['all', 'complete', 'unComplete'];
+  // 메모지 색깔별로 구분해주기  ['일' ,'친구','자기계발']
+  const labelData = ['work' ,'friend','selfDev']
   //메모지 색깔 랜덤으로 바꿔주기
   const color = ['#FFC470', '#FFBDAE', '#B1D0FF', '#FFEA79'];
   let num = Math.floor(Math.random() * color.length);
@@ -159,6 +161,11 @@ const Main = ({}: {}) => {
               <div className="flex ">
                 <Select
                   optionData={optionData}
+                  filter={filter}
+                  onChange={onChange}
+                />
+                   <Select
+                  optionData={labelData}
                   filter={filter}
                   onChange={onChange}
                 />
