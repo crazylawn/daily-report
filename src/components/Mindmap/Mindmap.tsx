@@ -73,7 +73,6 @@ const Mindmap = () => {
 };
 
 const Wrapper = tw.div`
-// flex
 `;
 const Layout = tw.div`
 flex
