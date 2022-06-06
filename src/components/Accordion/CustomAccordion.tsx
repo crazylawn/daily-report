@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import tw, { styled } from 'twin.macro';
+import { SVGS } from '@icons';
 export interface CustomAccordion {
   title: string;
   content: string;
@@ -22,8 +23,11 @@ const CustomAccordion = ({ title, content }: CustomAccordion) => {
     <AccordionSection>
       <Accordion className={`${setActive}`} onClick={toggleAccordion}>
         <AccordionTitle>{title}</AccordionTitle>
+        <div className={`${setRotate}`}>
+          <SVGS.ARROW_BOTTOM />
+        </div>
       </Accordion>
-      {/* <Icon className={`${setRotate}`} width={10} fill={'#777'} /> */}
+
       <AccordionContent ref={contentRef} style={{ maxHeight: `${setHeight}` }}>
         <AccordionText dangerouslySetInnerHTML={{ __html: content }} />
       </AccordionContent>
@@ -55,6 +59,7 @@ const AccordionTitle = tw.p`
 font-semibold
 text-sm
 text-left
+flex-1
 `;
 const AccordionIcon = styled.div`
   margin-left: auto;
