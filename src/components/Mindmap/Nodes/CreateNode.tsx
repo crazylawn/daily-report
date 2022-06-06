@@ -1,27 +1,79 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { styled } from 'twin.macro';
 import InputBox from '@components/InputBox';
+import { useNode, useCurrentNodeId } from 'store/nodeStore';
+import MindmapButton from '@components/Button/MindmapButton';
 
-const CreateNode = () => {
-  const [isFirst, setIsFirst] = useState();
+export interface CreateNodeProps {
+  cyRef: any;
+  onSaveGraph: () => void;
+  inputType: string;
+  onChangeNodeId: (value: string) => void;
+  nodeId: string;
+  onNodeClickHandler: (e: any) => void;
+}
+const CreateNode = ({
+  cyRef,
+  onSaveGraph,
+  inputType,
+  onChangeNodeId,
+  nodeId,
+  onNodeClickHandler,
+}: CreateNodeProps) => {
+  const [isFirst, setIsFirst] = useNode((state: any) => [
+    state.default,
+    state.setDefault,
+  ]);
   const [newNode, setNewNode] = useState<string>('');
+  const [newNodeId, setNewNodeId] = useCurrentNodeId((state: any) => [
+    state.default,
+    state.setDefault,
+  ]);
   const onChangeNewNode = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       setNewNode(e.target.value);
     },
     [newNode],
   );
+  const upNewNodeId = useCurrentNodeId((state: any) => state.default);
+
+  // 노드 추가 이벤트
+  const onNewCircle = (e: React.FormEvent<HTMLFormElement>) => {
+    const item = {
+      data: {
+        id: newNodeId,
+        label: newNode,
+      },
+      position: {
+        x: 50,
+        y: 600,
+      },
+    };
+    e.preventDefault();
+    cyRef.current.add(item);
+    setNewNodeId(upNewNodeId);
+    setNewNode('');
+    onSaveGraph();
+  };
   return (
     <div>
       {isFirst ? (
-        <FormBox>
-          <InputBox
-            type="text"
-            placeholder="새로운 노드 만들기"
-            value={newNode}
-            onChange={() => onChangeNewNode}
-          />
-        </FormBox>
+        <>
+          <FormBox onSubmit={onNewCircle}>
+            <InputBox
+              type="text"
+              placeholder="새로운 노드 만들기"
+              value={newNode}
+              name="newNode"
+              onChange={onChangeNewNode}
+            />
+            <MindmapButton
+              type="submit"
+              label="add"
+              content="추가"
+            ></MindmapButton>
+          </FormBox>
+        </>
       ) : (
         <FormBox></FormBox>
       )}

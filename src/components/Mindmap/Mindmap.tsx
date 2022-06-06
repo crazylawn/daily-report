@@ -58,7 +58,7 @@ const Mindmap = () => {
   const nodeIdCounter = useRef<any>();
   return (
     <Wrapper>
-      <MindmapControl onNewNode={handleNewNode} />
+      <MindmapControl onNewNode={handleNewNode}  cyRef={cyRef}/>
       <Layout>
         <MindmapBox
           elements={MindmapComponent.normalizeElements(elements)}

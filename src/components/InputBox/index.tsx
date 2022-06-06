@@ -5,7 +5,7 @@ export interface InputBoxProps {
   type: string;
   placeholder?: string;
   value: string;
-  onChange: () => void;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   name?: string;
   onFocus?: any;
   readOnly?: boolean;
