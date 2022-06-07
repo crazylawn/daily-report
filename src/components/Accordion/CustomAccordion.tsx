@@ -27,7 +27,6 @@ const CustomAccordion = ({ title, content }: CustomAccordion) => {
           <SVGS.ARROW_BOTTOM />
         </div>
       </Accordion>
-
       <AccordionContent ref={contentRef} style={{ maxHeight: `${setHeight}` }}>
         <AccordionText dangerouslySetInnerHTML={{ __html: content }} />
       </AccordionContent>
