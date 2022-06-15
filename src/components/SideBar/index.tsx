@@ -1,4 +1,3 @@
-// import './Sidebar.css';
 import React, { useState, useEffect } from 'react';
 import tw, { styled } from 'twin.macro';
 

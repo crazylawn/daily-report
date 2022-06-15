@@ -9,6 +9,7 @@ import { useRouter } from 'next/router';
 import Select from '@components/Select';
 import { TargetAccordion } from '@components/Accordion/TargetAccordion';
 import CustomAccordion from '@components/Accordion/CustomAccordion';
+import { Sidebar } from '@components/SideBar';
 
 const Main = ({}: {}) => {
   //메모지 전체 리스트
@@ -211,23 +212,30 @@ const Main = ({}: {}) => {
               ''
             )}
           </div>
+
           <RectangleBox>
-            <RectangleTabBar bg="#E14141">
-              <TabText onClick={() => targetMovePage('year')}>일년목표</TabText>
-            </RectangleTabBar>
-            <RectangleTabBar bg="#FA7719">
-              <TabText onClick={() => targetMovePage('month')}>
-                한달목표
-              </TabText>
-            </RectangleTabBar>
-            <RectangleTabBar bg="#BEC12D">
-              <TabText onClick={() => targetMovePage('week')}>
-                일주일목표
-              </TabText>
-            </RectangleTabBar>
-            <RectangleTabBar bg="#689C26">
-              <TabText onClick={() => targetMovePage('day')}>하루목표</TabText>
-            </RectangleTabBar>
+            <Sidebar width={300} height={'100vh'}>
+              <RectangleTabBar bg="#E14141">
+                <TabText onClick={() => targetMovePage('year')}>
+                  일년목표
+                </TabText>
+              </RectangleTabBar>
+              <RectangleTabBar bg="#FA7719">
+                <TabText onClick={() => targetMovePage('month')}>
+                  한달목표
+                </TabText>
+              </RectangleTabBar>
+              <RectangleTabBar bg="#BEC12D">
+                <TabText onClick={() => targetMovePage('week')}>
+                  일주일목표
+                </TabText>
+              </RectangleTabBar>
+              <RectangleTabBar bg="#689C26">
+                <TabText onClick={() => targetMovePage('day')}>
+                  하루목표
+                </TabText>
+              </RectangleTabBar>
+            </Sidebar>
           </RectangleBox>
         </MainRow>
       </QueryClientProvider>
@@ -280,7 +288,7 @@ rounded-lg
 `,
   css`
     &:hover {
-      transform: translateX(-30%);
+      transform: translateX(-13%);
       transition: transform 1s;
       background-color: ${bg};
     }
