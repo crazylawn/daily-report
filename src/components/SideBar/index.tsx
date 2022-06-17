@@ -1,31 +1,46 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import tw, { styled } from 'twin.macro';
 
 export interface SideBarProps {
   width: any;
-  height: any;
+  height?: any;
   children: any;
 }
 
 export const Sidebar = ({ width, height, children }: SideBarProps) => {
   const [xPosition, setX] = useState<Number>(-width);
-
+  const [isOpen, setOpen] = useState(false);
+  const side = useRef<any>();
   const toggleMenu = () => {
     if (xPosition < 0) {
       setX(0);
+      setOpen(true);
     } else {
       setX(-width);
+      setOpen(false);
+    }
+  };
+  const handleClose = async (e: any) => {
+    let sideArea = side.current;
+    let sideCildren = side.current.contains(e.target);
+    if (isOpen && (!sideArea || !sideCildren)) {
+      await setX(-width);
+      await setOpen(false);
     }
   };
   useEffect(() => {
     setX(0);
-    return () => {};
+    window.addEventListener('click', handleClose);
+    return () => {
+      window.removeEventListener('click', handleClose);
+    };
   }, []);
   return (
     <React.Fragment>
       <SideBarWrapper
+        ref={side}
         style={{
-          transform: `translatex(${xPosition}px)`,
+          transform: `translatex(${-xPosition}px)`,
           width: width,
           minHeight: height,
         }}
@@ -33,7 +48,7 @@ export const Sidebar = ({ width, height, children }: SideBarProps) => {
         <ToggleMenu
           onClick={() => toggleMenu()}
           style={{
-            transform: `translate(${width}px, 20vh)`,
+            transform: `translate(${-width}px, 20vh)`,
           }}
         ></ToggleMenu>
         <div className="content">{children}</div>

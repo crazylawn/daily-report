@@ -214,7 +214,7 @@ const Main = ({}: {}) => {
           </div>
 
           <RectangleBox>
-            <Sidebar width={300} height={'100vh'}>
+            <Sidebar width={'100%'}>
               <RectangleTabBar bg="#E14141">
                 <TabText onClick={() => targetMovePage('year')}>
                   일년목표
