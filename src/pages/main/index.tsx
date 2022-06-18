@@ -214,7 +214,7 @@ const Main = ({}: {}) => {
           </div>
 
           <RectangleBox>
-            <Sidebar width={'100%'}>
+            <Sidebar width={90} height={'100%'}>
               <RectangleTabBar bg="#E14141">
                 <TabText onClick={() => targetMovePage('year')}>
                   일년목표
@@ -296,7 +296,9 @@ rounded-lg
     background-color: ${bg};
   `,
 ]);
-const RectangleBox = tw.div``;
+const RectangleBox = tw.div`
+
+`;
 
 const TabText = tw.div`
 flex

@@ -15,3 +15,12 @@
       format('woff');
   }
 }
+@layer components {
+  #__next {
+    @apply h-full;
+  }
+  html,
+  body {
+    @apply h-full;
+  }
+}

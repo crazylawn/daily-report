@@ -8,7 +8,7 @@ export interface SideBarProps {
 }
 
 export const Sidebar = ({ width, height, children }: SideBarProps) => {
-  const [xPosition, setX] = useState<Number>(-width);
+  const [xPosition, setX] = useState<number>(-width);
   const [isOpen, setOpen] = useState(false);
   const side = useRef<any>();
   const toggleMenu = () => {
@@ -29,7 +29,6 @@ export const Sidebar = ({ width, height, children }: SideBarProps) => {
     }
   };
   useEffect(() => {
-    setX(0);
     window.addEventListener('click', handleClose);
     return () => {
       window.removeEventListener('click', handleClose);
@@ -45,13 +44,11 @@ export const Sidebar = ({ width, height, children }: SideBarProps) => {
           minHeight: height,
         }}
       >
-        <ToggleMenu
-          onClick={() => toggleMenu()}
-          style={{
-            transform: `translate(${-width}px, 20vh)`,
-          }}
-        ></ToggleMenu>
-        <div className="content">{children}</div>
+        <SideButton onClick={() => toggleMenu()}>
+          {isOpen ? <ToggleMenuBar /> : <ToggleMenuBar />}
+        </SideButton>
+
+        <div className="h-full">{children}</div>
       </SideBarWrapper>
     </React.Fragment>
   );
@@ -67,10 +64,10 @@ const SideBarWrapper = styled.div`
   transition: 0.8s ease;
 `;
 
-const ToggleMenu = styled.button`
+const ToggleMenuBar = styled.button`
   height: 50px;
-  border-top-right-radius: 10rem;
-  border-bottom-right-radius: 9rem;
+  border-top-left-radius: 10rem;
+  border-bottom-left-radius: 9rem;
   width: 10px;
   position: absolute;
   outline: none;
@@ -78,4 +75,8 @@ const ToggleMenu = styled.button`
   background-color: rgba(64, 194, 133, 0.693);
   border-color: rgba(64, 194, 133, 0.693);
   border-left: 0;
+  top: 53%;
+  margin-left: -10px;
 `;
+
+const SideButton = styled.div``;
