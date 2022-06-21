@@ -10,6 +10,7 @@ import Select from '@components/Select';
 import { TargetAccordion } from '@components/Accordion/TargetAccordion';
 import CustomAccordion from '@components/Accordion/CustomAccordion';
 import { Sidebar } from '@components/SideBar';
+import LineNote from '@components/Note/LineNote';
 
 const Main = ({}: {}) => {
   //메모지 전체 리스트
@@ -177,11 +178,12 @@ const Main = ({}: {}) => {
                 </ImageWrapper>
               </div>
             </div>
+            <LineNote />
+            {/* <CustomAccordion title="할일" content={'테스트'} />
             <CustomAccordion title="할일" content={'테스트'} />
             <CustomAccordion title="할일" content={'테스트'} />
             <CustomAccordion title="할일" content={'테스트'} />
-            <CustomAccordion title="할일" content={'테스트'} />
-            <CustomAccordion title="할일" content={'테스트'} />
+            <CustomAccordion title="할일" content={'테스트'} /> */}
             {/* <div className="mt-2 flex flex-wrap justify-center">
               {memoComponent?.map((item: any, i: number) => {
                 return (

@@ -5,7 +5,7 @@ import Notebook from './notebook';
 
 const Home: NextPage = () => {
   return (
-    <div>
+    <div style={{ height: '100%' }}>
       <Notebook />
     </div>
   );
