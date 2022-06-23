@@ -2,8 +2,14 @@ import React, { useMemo, useRef } from 'react';
 import tw, { styled, css } from 'twin.macro';
 const LineNote = () => {
   const noteInput = useRef<any>();
-
-  const grayLineList = useMemo(
+  const grayTitleInputList = useMemo(
+    () =>
+      Array.from({ length: 26 }, (_, i) => (
+        <GrayLine key={i} ref={noteInput} />
+      )),
+    [],
+  );
+  const grayContentInputList = useMemo(
     () =>
       Array.from({ length: 26 }, (_, i) => (
         <GrayLine key={i} ref={noteInput} />
@@ -12,10 +18,11 @@ const LineNote = () => {
   );
   return (
     <LineNoteWrapper>
-      <>
+      <div className="flex flex-row">
+        <div className="w-1/3">{grayTitleInputList}</div>
         <PointLine />
-        {grayLineList}
-      </>
+        <div>{grayContentInputList}</div>
+      </div>
     </LineNoteWrapper>
   );
 };
