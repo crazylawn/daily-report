@@ -1,12 +1,12 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useRef } from 'react';
 import tw, { styled, css } from 'twin.macro';
 const LineNote = () => {
+  const noteInput = useRef<any>();
+
   const grayLineList = useMemo(
     () =>
       Array.from({ length: 26 }, (_, i) => (
-        // <LineBox>
-        <GrayLine key={i} />
-        // </LineBox>
+        <GrayLine key={i} ref={noteInput} />
       )),
     [],
   );
@@ -27,10 +27,6 @@ h-full
 bg-white
 
 `;
-
-// const LineBox = tw.div`
-// `;
-
 const GrayLine = styled.input(({}) => [
   tw`
   w-full
@@ -38,26 +34,15 @@ const GrayLine = styled.input(({}) => [
    py-1
    outline-none
   `,
-  css`
-    /* width: -moz-available; */
-  `,
+  css``,
 ]);
-
-// const GrayLine = tw.input`
-// // w-full
-// border-b-2
-// py-1
-// outline-none
-// `;
 
 const PointLine = tw.div`
 absolute
-w-full
-h-full
+left-24
+// w-full
+ h-full
 border-red-400
 border-l-2
-
-
-
 `;
 export default LineNote;
