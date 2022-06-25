@@ -19,9 +19,11 @@ const LineNote = () => {
   return (
     <LineNoteWrapper>
       <div className="flex flex-row">
-        <div className="w-1/3">{grayTitleInputList}</div>
+        <div className="sm:w-40 md:w-36 lg:w-28 xl:w-28">
+          {grayTitleInputList}
+        </div>
         <PointLine />
-        <div>{grayContentInputList}</div>
+        <div className="w-full">{grayContentInputList}</div>
       </div>
     </LineNoteWrapper>
   );
@@ -36,10 +38,11 @@ bg-white
 `;
 const GrayLine = styled.input(({}) => [
   tw`
-  w-full
+   w-full
    border-b-2
    py-1
    outline-none
+   pr-2
   `,
   css``,
 ]);
@@ -51,5 +54,6 @@ left-24
  h-full
 border-red-400
 border-l-2
+
 `;
 export default LineNote;
