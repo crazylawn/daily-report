@@ -1,6 +1,5 @@
 import React from 'react';
 import { useTable } from 'react-table';
-// import styled from 'styled-components';
 import tw from 'twin.macro';
 // useTable에다가 작성한 columns와 data를 전달한 후 아래 4개의 props를 받아온다
 interface TableType {
@@ -43,11 +42,16 @@ const CustomTable = ({ columns, data }: TableType) => {
 };
 
 const TableSheet = tw.div`
+
 `;
 const TableHead = tw.div`
+border-2
 `;
 const Header = tw.div`
 `;
 const Th = tw.th`
+border-b-red-800
 `;
 const Td = tw.td``;
+
+export default CustomTable;
