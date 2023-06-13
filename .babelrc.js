@@ -22,6 +22,7 @@ module.exports = {
           '@pages': './src/pages',
           '@components': './src/components',
           '@styles': './src/styles',
+          '@icons': './src/icons',
           // "@layouts": "./src/layouts",
           // "@providers": "./src/providers",
           // "@services": "./src/services",

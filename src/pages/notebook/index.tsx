@@ -2,6 +2,7 @@ import React from 'react';
 import { css } from '@emotion/react';
 import tw, { styled } from 'twin.macro';
 import { NextPage } from 'next';
+import { useRouter } from 'next/router';
 interface IconProps {
   index: number;
 }
@@ -12,6 +13,11 @@ interface IconProps {
 // flex-col	flex-direction: column;
 // flex-col-reverse	flex-direction: column-reverse;
 const Notebook: NextPage = () => {
+  const reuter = useRouter();
+  const onMovePage = () => {
+    // reuter.push('/main');
+    reuter.push('/priority');
+  };
   return (
     <NotebookLayout className="bg-[#fffff]">
       <NotebookRow>
@@ -21,19 +27,27 @@ const Notebook: NextPage = () => {
           <ButtonWrapper>
             {/* w-28 이면 width  :width: 7rem; //112px  */}
             {/* rounded-lg 이면 border-radius: 0.5rem; //8px  */}
-            <button className="h-10 w-28 rounded-lg bg-grayish-red">
+            <button
+              className="h-10 w-28 rounded-lg bg-grayish-red"
+              onClick={onMovePage}
+            >
               <Text>google Login</Text>
             </button>
-            <button className="h-10 w-28 rounded-lg bg-grayish-red">
+            <button
+              className="h-10 w-28 rounded-lg bg-grayish-red"
+              onClick={onMovePage}
+            >
               <Text>kakao Login</Text>
             </button>
-            <button className="h-10 w-28 rounded-lg bg-grayish-red">
+            <button
+              className="h-10 w-28 rounded-lg bg-grayish-red"
+              onClick={onMovePage}
+            >
               <Text> naver Login</Text>
             </button>
           </ButtonWrapper>
         </ContentBox>
       </NotebookRow>
-
       {/* <Icon index={50}>rkqt</Icon> */}
     </NotebookLayout>
   );
@@ -50,12 +64,10 @@ justify-center
 
 const NotebookRow = tw.div`
 flex
-sm:w-full
-md:w-full
-lg:w-2/4
-xl:w-2/4
-
-h-257
+sm:w-full h-full
+md:w-full h-full
+lg:w-2/4 h-257
+xl:w-2/4 h-257
 bg-light-grayish-red
 rounded-lg
 `;
