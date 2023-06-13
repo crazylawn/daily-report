@@ -11,6 +11,9 @@ import { TargetAccordion } from '@components/Accordion/TargetAccordion';
 import CustomAccordion from '@components/Accordion/CustomAccordion';
 import { Sidebar } from '@components/SideBar';
 import LineNote from '@components/Note/LineNote';
+import NoLineNote from '@components/Note/NoLineNote';
+import WeekNote from '@components/Note/WeekNote';
+import TableNote from '@components/Note/TableNote';
 
 const Main = ({}: {}) => {
   //메모지 전체 리스트
@@ -178,7 +181,10 @@ const Main = ({}: {}) => {
                 </ImageWrapper>
               </div>
             </div>
-            <LineNote />
+            {/* <LineNote /> */}
+            {/* <NoLineNote /> */}
+            {/* <TableNote /> */}
+            <WeekNote />
             {/* <CustomAccordion title="할일" content={'테스트'} />
             <CustomAccordion title="할일" content={'테스트'} />
             <CustomAccordion title="할일" content={'테스트'} />

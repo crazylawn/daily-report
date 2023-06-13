@@ -6,17 +6,17 @@ import { useDrag, DragSourceMonitor } from 'react-dnd';
 interface PriorityPadProps {
   bg?: string;
   content?: string;
-  setItems?: any;
+  setMemoComponent?: any;
 }
 export const PriorityPad = ({
   bg,
   content,
-  setItems,
+  setMemoComponent,
   ...props
 }: PriorityPadProps) => {
   const changeItemColumn = useCallback(
     (currentItem: any, columnName: string) => {
-      setItems((prevState: any) => {
+      setMemoComponent((prevState: any) => {
         return prevState.map((e: any) => {
           return {
             ...e,
@@ -27,6 +27,21 @@ export const PriorityPad = ({
     },
     [],
   );
+
+  // const changeItemColumn = useCallback(
+  //   (currentItem: any, columnName: string) => {
+  //     setMemoComponent((prevState: any) => {
+  //       return prevState.map((e: any) => {
+  //         return {
+  //           ...e,
+  //           column: e.content === currentItem.content ? columnName : e.column,
+  //         };
+  //       });
+  //     });
+  //   },
+  //   [],
+  // );
+
   const [{ isDragging }, drag] = useDrag({
     type: 'text',
     item: { content },
@@ -60,11 +75,16 @@ export const PriorityPad = ({
 
 const PriorityWrapper = styled.div<{ bg?: string }>(({ bg }) => [
   tw`
-  w-56
-  h-56
+  w-80
+  h-20
   shadow-lg
+  rounded-lg
   text-green-800
+  border-2
+  border-dashed
+  border-current
   p-4
+  mb-4
   `,
 
   css`
