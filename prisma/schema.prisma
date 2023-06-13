@@ -1,0 +1,74 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+  
+datasource db {
+  provider = "sqlite"
+  url    = env("DATABASE_URL")
+}
+
+model User {
+  id            Int       @id @default(autoincrement())
+  mingkingId    String    @unique @map(name :"mingking_id")
+  name          String?
+  email         String?   @map(name: "email")
+  emailVerified DateTime? @map(name: "email_verified")
+  image         String?
+  createdAt     DateTime  @default(now()) @map(name: "created_at")
+  updatedAt     DateTime  @updatedAt @map(name: "updated_at")
+
+  @@map(name: "users")
+}
+model Account {
+  id                  Int       @id @default(autoincrement())
+  userId              Int       @unique  @map(name: "user_id")
+  providerType        String    @map(name: "provider_type")
+  providerId          String    @map(name: "provider_id")
+  providerAccountId   String    @map(name: "provider_account_id")
+  refreshToken        String?   @map(name: "refresh_token")
+  refreshTokenExpires Int?     @map(name: "refresh_token_expires")
+  accessToken         String?   @map(name: "access_token")
+  accessTokenExpires  DateTime? @map(name: "access_token_expires")
+  tokenType           String?   @map(name: "token_type")
+  scope               String?   @map(name: "scope")
+  idToken             String?   @map(name : "id_token")
+  createdAt           DateTime  @default(now()) @map(name: "created_at")
+  updatedAt           DateTime  @default(now()) @map(name: "updated_at")
+
+  @@index([providerAccountId], name: "providerAccountId")
+  @@index([providerId], name: "providerId")
+  @@index([userId], name: "userId")
+  @@map(name: "accounts")
+}
+model  Profile {
+  id                  Int       @id @default(autoincrement())
+  userId              Int       @unique  @map(name: "user_id")
+  nickname            String?   @map(name: "nickname")
+  name                String?   @map(name: "name")
+  profileImageUrl        String?   @map(name: "profile_image_url")
+  thumbnailImageUrl   String?   @map(name: "thumbnail_image_url")
+  birthyear           String?   @map(name: "birthyear")
+  birthday            String?   @map(name: "birthday")
+  birthdayType        String?   @map(name: "birthday_type")
+  age                 String?   @map(name: "age")
+  gender              String?   @map(name: "gender")
+  email               String?   @map(name: "email")
+  mobile              String?   @map(name: "mobile")
+  mobileE164          String?   @map(name: "mobile_e164")
+
+  @@map(name: "profiles")
+}
+model Session {
+  id           Int      @id @default(autoincrement())
+  userId       Int     @unique @map(name: "user_id")
+  expires      DateTime
+  sessionToken String   @unique @map(name: "session_token")
+  accessToken  String   @unique @map(name: "access_token")
+  createdAt    DateTime @default(now()) @map(name: "created_at")
+  updatedAt    DateTime @default(now()) @map(name: "updated_at")
+
+  @@map(name: "sessions")
+}
