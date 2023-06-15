@@ -3,8 +3,6 @@ module.exports = {
     './src/pages/**/*.{js,ts,jsx,tsx}',
     './src/components/**/*.{js,ts,jsx,tsx}',
   ],
-  //https://github.com/tailwindlabs/tailwindcss/discussions/6019
-  //tailwind v3.0  => 이슈 링크 추가!
   darkMode: 'class', //다크모드 적용
   theme: {
     extend: {
@@ -72,17 +70,5 @@ module.exports = {
       fadeIn: 'fadeIn 300ms cubic-bezier(.6, 0, .4, 1) forwards',
     },
   },
-  plugins: [
-    'tailwindcss',
-    // plugin(({ addComponents }) => {
-    //   const components = {
-    //     '.flex-center': {
-    //       display: 'flex',
-    //       justifyContent: 'center',
-    //       alignItems: 'center',
-    //     },
-    //   };
-    //   addComponents(components);
-    // }),
-  ],
+  plugins: ['tailwindcss'],
 };

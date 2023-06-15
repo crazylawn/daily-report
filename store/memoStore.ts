@@ -26,17 +26,13 @@ export interface UseTodoProps {
 }
 export const useTodo = create<any>(
   devtools((set: any, get: any) => ({
-    //오늘 할일 리스트
     todoList: [],
     setTodoList: (list: UseTodoProps) => set({ todoList: list }),
-    //오늘할일 필터링   : 한것 , 못한것
     todoListFilter: 'all',
     setTodoListFilter: (filter: any) => set({ todoListFilter: filter }),
-    //필터링 조건
     filteredTodoList: () => {
       const filter = get().todoListFilter;
       const list = get().todoList;
-      //switch 문
       switch (filter) {
         case 'complete':
           return list.filter((item: any) => item.isComplete);

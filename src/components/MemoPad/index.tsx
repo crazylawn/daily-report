@@ -1,4 +1,4 @@
-import React, { useCallback, ReactElement } from 'react';
+import React from 'react';
 import tw, { styled } from 'twin.macro';
 import { css } from '@emotion/react';
 import { SVGS } from 'src/icons';

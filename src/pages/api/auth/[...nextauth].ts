@@ -1,4 +1,3 @@
-import { NextApiHandler } from 'next';
 import NextAuth from 'next-auth';
 import KakaoProvider from 'next-auth/providers/kakao';
 import NaverProvider from 'next-auth/providers/naver';
@@ -24,7 +23,7 @@ export default NextAuth({
   ],
 
   callbacks: {
-    signIn: async ({ user, account, profile, session }: any) => {
+    signIn: async ({ user, account, profile }: any) => {
       try {
         const exitedUser = await prisma.user.findMany({
           where: { email: user.email },
@@ -33,12 +32,9 @@ export default NextAuth({
           where: { mingkingId: user.email + user.id },
         });
         if (exitedUser && exitedMingKingId) {
-          //이미 이메일이 있으면서
-          //고유한 값도 있으면
-          return Promise.resolve(true); //로그인 성공
+          
+          return Promise.resolve(true); 
         } else {
-          //고유한 값이 없으면
-          console.log('프로필', profile, user, account, session);
           if (account.provider === 'kakao') {
             const createdUser = await prisma.user.create({
               data: {

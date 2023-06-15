@@ -28,20 +28,6 @@ export const PriorityPad = ({
     [],
   );
 
-  // const changeItemColumn = useCallback(
-  //   (currentItem: any, columnName: string) => {
-  //     setMemoComponent((prevState: any) => {
-  //       return prevState.map((e: any) => {
-  //         return {
-  //           ...e,
-  //           column: e.content === currentItem.content ? columnName : e.column,
-  //         };
-  //       });
-  //     });
-  //   },
-  //   [],
-  // );
-
   const [{ isDragging }, drag] = useDrag({
     type: 'text',
     item: { content },
@@ -50,7 +36,6 @@ export const PriorityPad = ({
       // 즉, 사용자가 드래그 후 버튼을 놓을때 수행해야하는 작업
 
       const dropResult: any = monitor.getDropResult();
-      console.log('[dropResult]', dropResult && dropResult.name);
       if (dropResult && dropResult.name === 'Todo List') {
         changeItemColumn(item, 'Todo List');
       } else if (dropResult && dropResult.name === 'No Todo List') {

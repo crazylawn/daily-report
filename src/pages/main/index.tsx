@@ -1,19 +1,13 @@
-import React, { useMemo, useCallback, useState, useEffect } from 'react';
+import React, { useMemo, useCallback, useEffect } from 'react';
 import tw, { styled } from 'twin.macro';
 import { css } from '@emotion/react';
 import { SVGS } from 'src/icons';
-import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
-import { useMemoPad, useTodo, UseTodoProps } from 'store/memoStore';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { useMemoPad, useTodo } from 'store/memoStore';
 import MemoPad from '@components/MemoPad';
 import { useRouter } from 'next/router';
 import Select from '@components/Select';
-import { TargetAccordion } from '@components/Accordion/TargetAccordion';
-import CustomAccordion from '@components/Accordion/CustomAccordion';
 import { Sidebar } from '@components/SideBar';
-import LineNote from '@components/Note/LineNote';
-import NoLineNote from '@components/Note/NoLineNote';
-import WeekNote from '@components/Note/WeekNote';
-import TableNote from '@components/Note/TableNote';
 
 const Main = ({}: {}) => {
   //메모지 전체 리스트
@@ -27,9 +21,17 @@ const Main = ({}: {}) => {
   ]);
 
   //완료한일, 완료하지 못한일
-  const optionData = ['all', 'complete', 'unComplete'];
+  const optionData = [
+    { label: 'all', value: 0 },
+    { label: 'complete', value: 1 },
+    { label: 'unComplete', value: 2 },
+  ];
   // 메모지 색깔별로 구분해주기  ['일' ,'친구','자기계발']
-  const labelData = ['work', 'friend', 'selfDev'];
+  const labelData = [
+    { label: 'work', value: 0 },
+    { label: 'friend', value: 1 },
+    { label: 'selfDev', value: 2 },
+  ];
   //메모지 색깔 랜덤으로 바꿔주기
   const color = ['#FFC470', '#FFBDAE', '#B1D0FF', '#FFEA79'];
   let num = Math.floor(Math.random() * color.length);
@@ -130,20 +132,7 @@ const Main = ({}: {}) => {
       router.push('/plan/day');
     }
   }, []);
-  function MemoGetQuery() {
-    const { isLoading, error, data } = useQuery(
-      'data',
-      () =>
-        fetch('https://api.github.com/repos/tannerlinsley/react-query').then(
-          (res) => res.json(),
-        ),
-      { cacheTime: 3000 },
-    );
-    if (isLoading) return <div>...loading</div>;
-    if (error) return <div>...error</div>;
-    return <div>{data.name}</div>;
-  }
-  //일단 저장하는 api를 안만들어서 localStorage 에 저장함!
+
   useEffect(() => {
     if (!memoComponent) return;
     const localMemoItem = localStorage.getItem('memoItem');
@@ -156,7 +145,6 @@ const Main = ({}: {}) => {
   return (
     <MainLayout>
       <QueryClientProvider client={queryClient}>
-        {/* <MemoGetQuery /> */}
         <MainRow>
           <CircleBox>{grayCircleList}</CircleBox>
           <div className="flex h-full w-full flex-col p-4 ">
@@ -181,16 +169,7 @@ const Main = ({}: {}) => {
                 </ImageWrapper>
               </div>
             </div>
-            {/* <LineNote /> */}
-            {/* <NoLineNote /> */}
-            {/* <TableNote /> */}
-            <WeekNote />
-            {/* <CustomAccordion title="할일" content={'테스트'} />
-            <CustomAccordion title="할일" content={'테스트'} />
-            <CustomAccordion title="할일" content={'테스트'} />
-            <CustomAccordion title="할일" content={'테스트'} />
-            <CustomAccordion title="할일" content={'테스트'} /> */}
-            {/* <div className="mt-2 flex flex-wrap justify-center">
+            <div className="mt-2 flex flex-wrap justify-center">
               {memoComponent?.map((item: any, i: number) => {
                 return (
                   <MemoPad
@@ -206,7 +185,7 @@ const Main = ({}: {}) => {
                   />
                 );
               })}
-            </div> */}
+            </div>
             {memoComponent.length > 0 ? (
               <div className="mt-7 flex justify-center">
                 <button

@@ -7,16 +7,10 @@ interface IconProps {
   index: number;
 }
 
-//이건 정말 꼭 알아야해!!!
-// flex-row	flex-direction: row;
-// flex-row-reverse	flex-direction: row-reverse;
-// flex-col	flex-direction: column;
-// flex-col-reverse	flex-direction: column-reverse;
 const Notebook: NextPage = () => {
   const reuter = useRouter();
   const onMovePage = () => {
-    // reuter.push('/main');
-    reuter.push('/priority');
+    reuter.push('/main');
   };
   return (
     <NotebookLayout className="bg-[#fffff]">
@@ -25,8 +19,6 @@ const Notebook: NextPage = () => {
         <ContentBox>
           <Title>Life Make it</Title>
           <ButtonWrapper>
-            {/* w-28 이면 width  :width: 7rem; //112px  */}
-            {/* rounded-lg 이면 border-radius: 0.5rem; //8px  */}
             <button
               className="h-10 w-28 rounded-lg bg-grayish-red"
               onClick={onMovePage}
@@ -48,11 +40,10 @@ const Notebook: NextPage = () => {
           </ButtonWrapper>
         </ContentBox>
       </NotebookRow>
-      {/* <Icon index={50}>rkqt</Icon> */}
+      {/* <Icon index={50}></Icon> */}
     </NotebookLayout>
   );
 };
-// tailwind설정파일에 있는 color 가져다 쓰는법!
 const NotebookLayout = tw.div`
 w-full
 h-full
